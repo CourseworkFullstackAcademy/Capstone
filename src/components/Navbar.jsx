@@ -9,7 +9,7 @@ export const Navbar = () => {
 			<Link to="/">Shop</Link>
 			<Link to="/cart"><ShoppingCart size={32} /></Link>
 			<Link to="/login">Login</Link>
-			<Link>Register</Link>
+			<Link to="/signup">Register</Link>
 			<Link>Log Out</Link>
 		</div>
 	</div>;
