@@ -165,6 +165,101 @@ export const getCarts = async () => {
 		console.log(data);
 		return data;
 	}catch (error) {
-		console.log(`Error products to cart: `. error);
+		console.log(`Error adding products to cart: `. error);
 	}
 }
+
+//Update a product in the cart
+export const updateCart = async cartId => {
+	try {
+		const response = await fetch(`${BASE_URL}/carts/${cartId}`,{
+			method:"PUT",
+			body:JSON.stringify(
+				{
+					userdD:"userId",
+					date: "date",
+					products:"products"
+				}
+			)
+		});
+		const data = await response.json();
+		console.log(data);
+		return data;
+	}catch (error) {
+		console.log(`Error updating item in cart: `. error);
+	}
+}
+
+//DELETE a cart
+export const deleteProductCart = async cartId => {
+	try {
+		const response = await fetch(`${BASE_URL}/carts/${cartId}`,{
+			method:"DELETE",
+			body:JSON.stringify(
+				{
+					userdD:"userId",
+					date: "date",
+					products:"products"
+				}
+			)
+		});
+		const data = await response.json();
+		console.log(data);
+		return data;
+	}catch (error) {
+		console.log(`Error deleting cart: `. error);
+	}
+}
+
+//USER FETCHES
+//GET ALL users
+export const getUsers = async () => {
+	const response = await fetch(`${BASE_URL}/users`);
+	const data = await response.json();
+	return data;
+  };
+
+  //GET SINGLE user
+  export const getSingleUser = async (userId) => {
+	const response = await fetch(`${BASE_URL}/users/${userId}`);
+	const data = await response.json();
+	return data;
+  };
+
+  //ADD new user
+  export const addUser = async () => {
+	try {
+		const response = await fetch(`${BASE_URL}/users`,{
+			method:"POST",
+			body:JSON.stringify(
+				{
+					email:'email',
+                    username:'userId',
+                    password:'',
+                    name:{
+                        firstname:'firstname',
+                        lastname:'lastname'
+                    },
+                    address:{
+                        city:'city',
+                        street:'street',
+                        number: '#',
+                        zipcode:'zipcode',
+                        geolocation:{
+                            lat:'lat',
+                            long:'long'
+                        }
+                    },
+                    phone:'phone'
+				}
+			)
+		});
+		const data = await response.json();
+		console.log(data);
+		return data;
+	}catch (error) {
+		console.log(`Error adding new user: `. error);
+	}
+}
+
+//UPDATE user
