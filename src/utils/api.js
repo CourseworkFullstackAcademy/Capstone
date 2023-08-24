@@ -263,3 +263,74 @@ export const getUsers = async () => {
 }
 
 //UPDATE user
+export const updateUser = async userId => {
+	try {
+		const response = await fetch(`${BASE_URL}/users/${userId}`,{
+			method:"PUT",
+			body:JSON.stringify(
+				{
+					email:'email',
+                    username:'userId',
+                    password:'',
+                    name:{
+                        firstname:'firstname',
+                        lastname:'lastname'
+                    },
+                    address:{
+                        city:'city',
+                        street:'street',
+                        number: '#',
+                        zipcode:'zipcode',
+                        geolocation:{
+                            lat:'lat',
+                            long:'long'
+                        }
+                    },
+                    phone:'phone'
+                }
+			)
+		});
+		const data = await response.json();
+		console.log(data);
+		return data;
+	}catch (error) {
+		console.log(`Error updating user: `. error);
+	}
+}
+
+//DELETE a user
+export const deleteUser = async userId => {
+	try {
+		const response = await fetch(`${BASE_URL}/users/${userId}`,{
+			method:"DELETE",
+			body:JSON.stringify(
+				
+			)
+		});
+		const data = await response.json();
+		console.log(data);
+		return data;
+	}catch (error) {
+		console.log(`Error deleting user: `. error);
+	}
+}
+
+//LOGIN FETCH
+export const loginUser = async () => {
+	try {
+		const response = await fetch(`${BASE_URL}/auth/login`,{
+			method:"POST",
+			body:JSON.stringify(
+				{
+					username:'userId',
+                    password:''                   
+				}
+			)
+		});
+		const data = await response.json();
+		console.log(data);
+		return data;
+	}catch (error) {
+		console.log(`Error loggin in: `. error);
+	}
+}
