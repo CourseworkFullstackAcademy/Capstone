@@ -316,14 +316,17 @@ export const deleteUser = async userId => {
 }
 
 //LOGIN FETCH
-export const loginUser = async () => {
+export const loginUser = async (username, password) => {
 	try {
 		const response = await fetch(`${BASE_URL}/auth/login`,{
 			method:"POST",
+			headers: {
+				'Content-Type': 'application/json', 
+			},
 			body:JSON.stringify(
 				{
-					username:'userId',
-                    password:''                   
+					username: username,
+                    password: password,                   
 				}
 			)
 		});
