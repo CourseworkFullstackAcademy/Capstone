@@ -1,28 +1,30 @@
 import { Routes, Route } from "react-router-dom";
-import Home from "./pages/Home"
-import Cart from "./pages/Cart"
+import { useState } from "react";
+import Home from "./pages/shop/Home"
+import Cart from "./pages/cart/Cart"
 import { Navbar } from "./components/Navbar"
 import Login from "./pages/Login";
 import Signup from "./pages/Signup"
 import './App.css'
 
 function App() {
- 
+  // eslint-disable-next-line no-unused-vars
+  const [ token, setToken ] = useState("");
 
   return (
-    <>
+  
      <div id="main-section">
      
          <Navbar /> 
           <Routes>       
             <Route path="/" element={ <Home />} />
             <Route path="/cart" element={ <Cart />} />
-            <Route path="/login" element={ <Login />} />
+            <Route path="/login" element={ <Login setToken={setToken} />} />
             <Route path="/signup" element={ <Signup />} />
           </Routes>
    
     </div>    
-    </>
+   
   )
 }
 

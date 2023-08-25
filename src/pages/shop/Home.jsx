@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
-import { getProducts } from '../utils/api';
+import { getProducts } from '../../utils/api';
+import { Product } from './product';
 import "./home.css"
 
+//Right now, only renders list of fetched products
 function Home() {
   const [products, setProducts] = useState([]);
 
@@ -22,15 +24,10 @@ function Home() {
   // Home component rendering:
   return (
     <div className ="shop">
-      <h1 className="shopTitle">Welcome to our E-Commerce Store</h1>
+      <h1 className="shopTitle">Welcome to &quot;Insert cool name here&quot; </h1>
       <div className="product-list">
         {products.map((product) => (
-          <div key={product.id} className="products">
-            <h2>{product.name}</h2>
-            <img src={product.image} alt={product.name} />            
-            <p>{product.description}</p>
-            <p>Price: ${product.price}</p>
-          </div>
+          <Product key={product.id} data={product} />
         ))}
       </div>
     </div>
