@@ -1,35 +1,43 @@
-import  { useState } from "react";
+import { useState, useEffect, useContext } from "react";
+import { ShopContext } from "../../context/shop-context";
 import { CartItem } from "./cart-item";
-
+import { getProducts } from '../../utils/api';
 import "./cart.css";
+import { Product } from "../shop/product";
 
 export default function Cart() {
-  const [cartItems, setCartItems] = useState([]);
+  const { cartItems } = useContext(ShopContext);
+  const [products, setProducts] = useState([]);
 
-  // Example function to add an item to the cart
-  const addToCart = (item) => {
-    // Check if the item is already in the cart
-    const existingItemIndex = cartItems.findIndex((cartItem) => cartItem.id === item.id);
-
-    if (existingItemIndex !== -1) {
-      // If the item is already in the cart, update its quantity
-      const updatedCartItems = [...cartItems];
-      updatedCartItems[existingItemIndex].quantity += 1;
-      setCartItems(updatedCartItems);
-    } else {
-      // If the item is not in the cart, add it as a new item
-      setCartItems([...cartItems, { ...item, quantity: 1 }]);
+  useEffect(() => {
+    async function fetchProducts() {
+      try {
+        const productsData = await getProducts();
+        setProducts(productsData);
+      } catch (error) {
+        console.error('Error fetching products:', error); 
+      }
     }
-  };
-  console.log(addToCart);
+
+    fetchProducts();
+  }, []);
 
   return (
     <div className="cart">
-      <div className="cart-title">Cart</div>
+      <div className="cart-title">
+        <h1>Your Cart Items</h1>
+      </div>
       <div className="container">
-        {cartItems.map((item) => (
-          <CartItem key={item.id} data={item} />
-        ))}
+        <div className="row">
+          <div className="col-3">
+            {products.map((product) => {
+              if (cartItems[product.id] > 0) {
+                return <CartItem data={product} />
+              }
+            })}
+          </div>
+        </div>
+        
       </div>
     </div>
   );
