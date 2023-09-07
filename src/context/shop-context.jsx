@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { createContext, useState } from "react";
 import PropTypes from "prop-types";
 import { getProducts } from "../utils/api";
@@ -24,17 +25,16 @@ export const ShopContextProvider = (props) => {
   const addToCart = (itemId) => {
     setCartItems({...cartItems, [itemId]: cartItems[itemId] ? cartItems[itemId] + 1 : 1 })};
 
-  // const removeFromCart = (itemId) => {
-  //   setCartItems((prev) => ({ ...prev, itemId: prev[itemId] - 1 }));
-  // };
+   const removeFromCart = (itemId) => {
+    setCartItems({...cartItems, [itemId]: cartItems[itemId] ? cartItems[itemId] - 1 : 1 })};
 
   const contextValue = {
     cartItems,
     addToCart,
-    //removeFromCart,
+    removeFromCart,
   };
 
-  console.log("What is cart itmes? ", cartItems);
+
 
   return (
     <ShopContext.Provider value={contextValue}>

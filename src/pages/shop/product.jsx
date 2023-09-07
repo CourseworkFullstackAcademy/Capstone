@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import PropTypes from "prop-types";
 import { useContext } from "react";
 import { ShopContext } from "../../context/shop-context";

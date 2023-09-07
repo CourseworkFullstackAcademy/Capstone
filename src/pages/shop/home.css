@@ -3,13 +3,13 @@
 	text-align: center;
 	font-size: 40px;
   }
-  
+/*   
   .product-list {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
   }
-  
+   */
   .product {
 	border-radius: 15px;
 	width: calc(33.33% - 20px); /* Distribute width equally for three columns */

@@ -1,8 +1,8 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 
-import { loginUser } from "../utils/api";
-import { saveTokenSessionStorage} from "../utils/sessionStorage";
+import { loginUser } from "../../utils/api";
+import { saveTokenSessionStorage} from "../../utils/sessionStorage";
 
 function Login({ setToken }) {
   const [username, setUsername] = useState("");

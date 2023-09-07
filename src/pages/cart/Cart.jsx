@@ -1,14 +1,23 @@
-
-
+import { useState, useEffect } from "react";
+import { CartItem } from "./cart-item";
 
 import "./cart.css";
 
 export default function Cart () {
- 
+  const [cartItem, setCartItem ] = useState([]);
+
+  
 
   return (
     <div className="cart">    
-        <h1> Your Shopping Cart is Empty</h1>
+        <div className="cart-title"></div>
+        <div className="contianer">
+          <div className="row">
+            <div className="col-3">
+              {}
+            </div>
+          </div>
+        </div>
     
     </div>
   );
