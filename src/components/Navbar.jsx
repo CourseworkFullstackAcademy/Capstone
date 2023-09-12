@@ -1,16 +1,30 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { ShoppingCart } from 'phosphor-react';
 import "./navbar.css"
 
-
 export const Navbar = () => {
-	return <div className="navbar">
-		<div className="links">
-			<Link to="/">Shop</Link>
-			<Link to="/cart"><ShoppingCart size={32} /></Link>
-			<Link to="/login">Login</Link>
-			<Link to="/signup">Register</Link>
-			<Link>Log Out</Link>
-		</div>
-	</div>;
+    return (
+        <div className="navbar">
+            <div className="links">
+                <NavLink exact to="/" activeClassName="active">Shop</NavLink>
+                <NavLink to="/cart"><ShoppingCart size={32} /></NavLink>
+                <NavLink to="/login">Login</NavLink>
+                <NavLink to="/signup">Register</NavLink>
+                <NavLink to="/logout">Log Out</NavLink>
+            </div>
+        </div>
+    );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

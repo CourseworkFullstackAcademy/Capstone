@@ -12,7 +12,7 @@ function Home() {
       try {
         const productsData = await getProducts();
         setProducts(productsData);
-        console.log('Fetched products:', productsData); 
+         
       } catch (error) {
         console.error('Error fetching products:', error); 
       }

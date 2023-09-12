@@ -25,8 +25,8 @@ function Login({ setToken }) {
       const response = await loginUser(username, password);
 		console.log(response);
 
-    if (response.ok && response.data && response.data.token) {
-      const token = response.data.token;
+    if (response.token) {
+      const token = response.token;
       setToken(token);
       saveTokenSessionStorage(token);
     } else {

@@ -3,7 +3,7 @@ import { ShopContext } from "../../context/shop-context";
 import { CartItem } from "./cart-item";
 import { getProducts } from '../../utils/api';
 import "./cart.css";
-import { Product } from "../shop/product";
+
 
 export default function Cart() {
   const { cartItems } = useContext(ShopContext);
@@ -31,8 +31,9 @@ export default function Cart() {
         <div className="row">
           <div className="col-3">
             {products.map((product) => {
+              //used > 0 instead of !== 0 because !==0 was still rendering all products, not just the ones on the cart
               if (cartItems[product.id] > 0) {
-                return <CartItem data={product} />
+                return <CartItem data={product} key={product.id} />
               }
             })}
           </div>
