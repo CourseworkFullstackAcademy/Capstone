@@ -80,6 +80,7 @@ function Signup() {
             required
           />
         </div>
+        <div><p>For enhanced security, your password must have a minimum of 8 characters, and include each of the folowing: 1 capital letter, 1 lowercase letter, a number, and a special character (!,@,#, etc). </p></div>
         <div>
           <label htmlFor="confirmPassword">Confirm Password:</label>
           <input
@@ -93,6 +94,7 @@ function Signup() {
         
         <button type="submit">Sign Up</button>
       </form>
+      <div><h5>Already have an account? <a href="/login">Log in</a></h5></div>
     </div>
   );
 }

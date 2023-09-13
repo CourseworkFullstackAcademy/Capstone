@@ -3,11 +3,13 @@ import { ShopContext } from "../../context/shop-context";
 import { Link } from "react-router-dom";
 import { CartItem } from "./cart-item";
 import { getProducts } from "../../utils/api";
+import { getCartItems, updateCartItems } from "../../utils/cart"; 
 import "./cart.css";
 
 export default function Cart() {
   const { cartItems } = useContext(ShopContext);
   const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState(getCartItems());
 
   useEffect(() => {
     async function fetchProducts() {
@@ -41,6 +43,13 @@ export default function Cart() {
       return totalQuantity;
     };
 
+    const handleCartItemUpdate = (itemId, quantity) => {
+      const updatedCart = { ...cart };
+      updatedCart[itemId] = quantity;
+      setCart(updatedCart);
+      updateCartItems(updatedCart); // Update cart in localStorage
+    };
+
   return (
     <div className="container">
       <div className="cart">
@@ -53,7 +62,14 @@ export default function Cart() {
               {products.map((product) => {
                 //used > 0 instead of !== 0 because !==0 was still rendering all products, not just the ones on the cart
                 if (cartItems[product.id] > 0) {
-                  return <CartItem data={product} key={product.id} />;
+                  return (
+                    <CartItem
+                      data={product}
+                      key={product.id}
+                      quantity={cart[product.id]} 
+                      onUpdate={handleCartItemUpdate} 
+                    />
+                  );
                 }
               })}
             </div>

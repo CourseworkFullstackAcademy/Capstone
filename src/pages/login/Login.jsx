@@ -65,6 +65,7 @@ function Login({ setToken }) {
         </div>
         <button type="submit">Log In</button>
       </form>
+      <div><h5>Don&apos;t have an account yet? <a href="/signup">Sign Up</a></h5></div>
     </div>
   );
 }

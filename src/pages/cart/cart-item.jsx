@@ -1,41 +1,64 @@
+import { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
-import { useContext } from "react";
 import { ShopContext } from "../../context/shop-context";
 
-export const CartItem = (props) => {
-  const { id,title, price, image } = props.data;
-  const { cartItems, addToCart, removeFromCart, updateCartItemCount } =
-    useContext(ShopContext);
+export function CartItem({ data, onUpdate }) {
+  const { cartItems } = useContext(ShopContext);
+  const [itemQuantity, setItemQuantity] = useState(cartItems[data.id] || 0);
+  const [cartItem, setCartItem] = useState(data);
+
+  useEffect(() => {
+    setItemQuantity(cartItems[data.id] || 0);
+  }, [cartItems, data]);
+
+  const handleQuantityChange = (event) => {
+    const newQuantity = parseInt(event.target.value, 10);
+    setItemQuantity(newQuantity);
+    updateCartItem(newQuantity);
+  };
+
+  const updateCartItem = (newQuantity) => {
+    const updatedCartItem = { ...cartItem, quantity: newQuantity };
+    setCartItem(updatedCartItem);
+    updateCartItems(updatedCartItem);
+    onUpdate(updatedCartItem.id, newQuantity);
+  };
 
   return (
-    <div className="cartItem">
-      <img src={image} />
-      <div className="description">
-        <p>
-          <b>{title}</b>
-        </p>
-        <p> Price: ${price}</p>
-        <div className="countHandler">
-          <button onClick={() => removeFromCart(id)}> - </button>
-          <input
-          //below renders number of item in cart
-            value={cartItems[id]}
-            //below allows user to type in number 
-            onChange={(e) => updateCartItemCount(Number(e.target.value), id)}
-          />
-          <button onClick={() => addToCart(id)}> + </button>
-        </div>
+    <div className="cart-item">
+      <div className="product-image">
+        <img src={cartItem.image} alt={cartItem.name} />
       </div>
+      <div className="product-details">
+        <h3>{cartItem.name}</h3>
+        <p>Price: ${cartItem.price}</p>
+      </div>
+      <div className="quantity-controls">
+        <button
+          onClick={() => updateCartItem(itemQuantity - 1)}
+          disabled={itemQuantity <= 1}
+        >
+          -
+        </button>
+        <input
+          type="number"
+          value={itemQuantity}
+          onChange={handleQuantityChange}
+          min="1"
+        />
+        <button onClick={() => updateCartItem(itemQuantity + 1)}>+</button>
+      </div>
+      <p>Total: ${cartItem.price * itemQuantity}</p>
     </div>
   );
-};
+}
 
 CartItem.propTypes = {
   data: PropTypes.shape({
     id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
-    image: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired, // Add image prop validation
   }).isRequired,
+  onUpdate: PropTypes.func.isRequired,
 };
