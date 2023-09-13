@@ -24,10 +24,10 @@ function Home() {
   // Home component rendering:
   return (
     <div className ="shop">
-      <h1 className="shopTitle">Welcome to &quot;Insert cool name here&quot; </h1>
+      <h1 className="shopTitle">Shop GREAT Sales </h1>
       <div className="container">
         <div className="row">
-      <div className="col-xs-3">
+      <div className="">
         {products.map((product) => (
           <Product key={product.id} data={product} />
         ))}

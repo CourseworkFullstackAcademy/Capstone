@@ -34,7 +34,6 @@ function Signup() {
     setPassword(newPassword)
     if (newPassword.match(passwordPattern)) {
       setPassword(newPassword);
-      console.log("Does password have blah")
     }
   };
 

@@ -18,7 +18,7 @@ export const CartItem = (props) => {
         <div className="countHandler">
           <button onClick={() => removeFromCart(id)}> - </button>
           <input
-          //below renders number of tht item in cart
+          //below renders number of item in cart
             value={cartItems[id]}
             //below allows user to type in number 
             onChange={(e) => updateCartItemCount(Number(e.target.value), id)}
