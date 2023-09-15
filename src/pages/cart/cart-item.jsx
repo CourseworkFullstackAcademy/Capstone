@@ -7,6 +7,12 @@ export function CartItem({ data, onUpdate }) {
   const [itemQuantity, setItemQuantity] = useState(cartItems[data.id] || 0);
   const [cartItem, setCartItem] = useState(data);
 
+  const updateCartItem = (newQuantity) => {
+    const updatedCartItem = { ...cartItem, quantity: newQuantity };
+    setCartItem(updatedCartItem);
+    onUpdate(updatedCartItem.id, newQuantity);
+  };
+
   useEffect(() => {
     setItemQuantity(cartItems[data.id] || 0);
   }, [cartItems, data]);
@@ -17,12 +23,6 @@ export function CartItem({ data, onUpdate }) {
     updateCartItem(newQuantity);
   };
 
-  const updateCartItem = (newQuantity) => {
-    const updatedCartItem = { ...cartItem, quantity: newQuantity };
-    setCartItem(updatedCartItem);
-    updateCartItems(updatedCartItem);
-    onUpdate(updatedCartItem.id, newQuantity);
-  };
 
   return (
     <div className="cart-item">

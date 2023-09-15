@@ -23,20 +23,18 @@ function Home() {
 
   // Home component rendering:
   return (
-    <div className ="shop">
-      <h1 className="shopTitle">Shop GREAT Sales </h1>
-      <div className="container">
-        <div className="row">
-      <div className="">
+    <div className="container mt-5">
+      <h1 className="text-center mb-4">Shop GREAT Sales </h1>
+     
+      <div className="row">
         {products.map((product) => (
-          <Product key={product.id} data={product} />
+          <div key={product.id} className="col-md-4 mb-4">
+          <Product data={product} />
+        </div>
         ))}
       </div>
       </div>
-      </div>
-      </div>
-  
-  );
+     );
 }
 
 export default Home;
