@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { useState } from "react";
 import Home from "./pages/shop/Home"
 import Cart from "./pages/cart/Cart"
@@ -12,13 +12,17 @@ import './App.css'
 function App() {
   // eslint-disable-next-line no-unused-vars
   const [ token, setToken ] = useState("");
+  const location = useLocation();
+
+  //conditionally render cart banner
+  const isCartPage = location.pathname === "/cart";
 
   return (
   
      <div id="main-section">
      
          <Navbar /> 
-         <CartBanner />
+         {isCartPage && <CartBanner />} {/* Render CartBanner only on the cart page */}
           <Routes>       
             <Route path="/" element={ <Home />} />
             <Route path="/cart" element={ <Cart />} />
