@@ -6,7 +6,7 @@ export const Navbar = () => {
   return (
     <div className="navbar">
       <div className="links">
-        <NavLink exact to="/" activeClassName="active">
+        <NavLink to="/" activeClassName="active">
           Shop
         </NavLink>
        

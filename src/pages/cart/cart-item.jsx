@@ -1,54 +1,32 @@
-import { useState, useEffect, useContext } from "react";
+import { useContext } from "react";
 import PropTypes from "prop-types";
 import { ShopContext } from "../../context/shop-context";
 
-export function CartItem({ data, onUpdate }) {
-  const { cartItems } = useContext(ShopContext);
-  const [itemQuantity, setItemQuantity] = useState(cartItems[data.id] || 0);
-  const [cartItem, setCartItem] = useState(data);
+export const CartItem = (props) => {
+ const { id, title, price, image } = props.data;
+ const  { cartItems, addToCart, removeFromCart, updateCartItemCount } = useContext(ShopContext);
 
-  const updateCartItem = (newQuantity) => {
-    const updatedCartItem = { ...cartItem, quantity: newQuantity };
-    setCartItem(updatedCartItem);
-    onUpdate(updatedCartItem.id, newQuantity);
-  };
-
-  useEffect(() => {
-    setItemQuantity(cartItems[data.id] || 0);
-  }, [cartItems, data]);
-
-  const handleQuantityChange = (event) => {
-    const newQuantity = parseInt(event.target.value, 10);
-    setItemQuantity(newQuantity);
-    updateCartItem(newQuantity);
-  };
-
+  
 
   return (
-    <div className="cart-item">
-      <div className="product-image">
-        <img src={cartItem.image} alt={cartItem.name} />
+    <div className="product">
+      <div className="product-image-container">
+        <img src={image} alt={title} className="product-image img-fluid" />
       </div>
       <div className="product-details">
-        <h3>{cartItem.name}</h3>
-        <p>Price: ${cartItem.price}</p>
+        <h3>{title}</h3>
+        <p>Price: ${price}</p>
       </div>
       <div className="quantity-controls">
-        <button
-          onClick={() => updateCartItem(itemQuantity - 1)}
-          disabled={itemQuantity <= 1}
-        >
-          -
-        </button>
-        <input
-          type="number"
-          value={itemQuantity}
-          onChange={handleQuantityChange}
-          min="1"
-        />
-        <button onClick={() => updateCartItem(itemQuantity + 1)}>+</button>
+      <button onClick={() => removeFromCart(id)}> - </button>
+          <input
+            value={cartItems[id]}
+            onChange={(e) => updateCartItemCount(Number(e.target.value), id)}
+          />
+        
+       <button onClick={() => addToCart(id)}> + </button>
       </div>
-      <p>Total: ${cartItem.price * itemQuantity}</p>
+      <p>Total: ${price * props.newAmount}</p>
     </div>
   );
 }
@@ -56,9 +34,11 @@ export function CartItem({ data, onUpdate }) {
 CartItem.propTypes = {
   data: PropTypes.shape({
     id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
-    image: PropTypes.string.isRequired, // Add image prop validation
+    image: PropTypes.string.isRequired, 
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,
+  quantity: PropTypes.number.isRequired,
+  newAmount: PropTypes.number.isRequired,
 };

@@ -7,7 +7,6 @@ import { getProducts } from "../../utils/api";
 import "./cart.css";
 
 export default function Cart() {
-  // eslint-disable-next-line no-unused-vars
   const { cartItems, setCartItems } = useContext(ShopContext);
   const [products, setProducts] = useState([]);
 
@@ -42,6 +41,13 @@ export default function Cart() {
     return totalQuantity;
   };
 
+  const handleCartItemUpdate = (itemId, newQuantity) => {
+    // Update your cartItems state here
+    const updatedCartItems = { ...cartItems };
+    updatedCartItems[itemId] = newQuantity;
+    // Set the updated cartItems state
+    setCartItems(updatedCartItems);
+  };
   
 
   return (
@@ -58,11 +64,11 @@ export default function Cart() {
                   return (
                     <div className="col-md-4 mb-4" key={product.id}>
                       <CartItem
-    data={product}
-    quantity={cartItems[product.id]} 
-    newAmount={cartItems[product.id]} 
-  />
-</div>
+                        data={product}
+                        onUpdate={(itemId, newQuantity) => handleCartItemUpdate(itemId, newQuantity)}
+
+                      />
+                    </div>
                   );
                 }
               })}

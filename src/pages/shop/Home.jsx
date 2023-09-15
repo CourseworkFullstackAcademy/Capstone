@@ -3,6 +3,7 @@ import { getProducts } from '../../utils/api';
 import { Product } from './product';
 import "./home.css"
 
+
 //Right now, only renders list of fetched products
 function Home() {
   const [products, setProducts] = useState([]);
@@ -20,6 +21,9 @@ function Home() {
 
     fetchProducts();
   }, []);
+
+
+
 
   // Home component rendering:
   return (
