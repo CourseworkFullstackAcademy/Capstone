@@ -5,11 +5,13 @@ import { CartItem } from "./cart-item";
 import { getProducts } from "../../utils/api";
 
 import "./cart.css";
+import { clearCart } from "../../utils/localStorageCart";
 
 export default function Cart() {
   // eslint-disable-next-line no-unused-vars
   const { cartItems, setCartItems } = useContext(ShopContext);
   const [products, setProducts] = useState([]);
+  
 
   useEffect(() => {
     async function fetchProducts() {
@@ -20,7 +22,6 @@ export default function Cart() {
         console.error("Error fetching products:", error);
       }
     }
-
     fetchProducts();
   }, []);
 
@@ -75,6 +76,10 @@ export default function Cart() {
         <h2>&#40; {calculateTotalQuantity()} &#41; items</h2>
         <h2>Total Price: ${calculateTotalPrice()}</h2>
         <Link to="checkout">Proceed to Checkout</Link>
+      </div>
+
+      <div className="clear-cart-btn">
+        <button onClick={clearCart}>Clear Cart</button>
       </div>
     </div>
   );

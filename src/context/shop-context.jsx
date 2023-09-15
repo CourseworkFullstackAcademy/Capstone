@@ -32,21 +32,24 @@ export const ShopContextProvider = (props) => {
   const addToCart = (itemId) => {
     const updatedCart = { ...cartItems, [itemId]: cartItems[itemId] ? cartItems[itemId] + 1 : 1 };
     setCartItems(updatedCart);
-
-    // Save the updated cart to local storage using the utility function
     updateCartItems(updatedCart);
   };
 
    const removeFromCart = (itemId) => {
     const updatedCart = { ...cartItems, [itemId]: cartItems[itemId] ? cartItems[itemId] - 1 : 1 };
     setCartItems(updatedCart);
+    updateCartItems(updatedCart);
+  };
 
-    // Save the updated cart to local storage using the utility function
+  const clearCart = () => {
+    // To clear the entire cart, set it to an empty object
+    const updatedCart = {};
+    setCartItems(updatedCart);
     updateCartItems(updatedCart);
   };
 
   const updateCartItemCount = (newAmount, itemId) => {
-    // Check if the new quantity is greater than 0
+
     if (newAmount > 0) {
       const updatedCart = {
         ...cartItems,
@@ -67,6 +70,7 @@ export const ShopContextProvider = (props) => {
     addToCart,
     removeFromCart,
     updateCartItemCount,
+    clearCart,
    // getTotalCartAmount
   };
 
