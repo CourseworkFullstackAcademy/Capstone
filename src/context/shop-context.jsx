@@ -2,6 +2,7 @@
 import { createContext, useReducer, useState } from "react";
 import PropTypes from "prop-types";
 import { getProducts } from "../utils/api";
+import { getCartItems, updateCartItems } from '../utils/localStorageCart'
 
 
 
@@ -22,21 +23,44 @@ const getDefaultCart = async () => {
 };
 
 export const ShopContextProvider = (props) => {
-  const [cartItems, setCartItems] = useState({});
+  const [cartItems, setCartItems] = useState(getCartItems());
   
 
 
  
 
   const addToCart = (itemId) => {
-    setCartItems({...cartItems, [itemId]: cartItems[itemId] ? cartItems[itemId] + 1 : 1 })};
+    const updatedCart = { ...cartItems, [itemId]: cartItems[itemId] ? cartItems[itemId] + 1 : 1 };
+    setCartItems(updatedCart);
+
+    // Save the updated cart to local storage using the utility function
+    updateCartItems(updatedCart);
+  };
 
    const removeFromCart = (itemId) => {
-    setCartItems({...cartItems, [itemId]: cartItems[itemId] ? cartItems[itemId] - 1 : 1 })};
+    const updatedCart = { ...cartItems, [itemId]: cartItems[itemId] ? cartItems[itemId] - 1 : 1 };
+    setCartItems(updatedCart);
 
-    const updateCartItemCount = (newAmount, itemId) => {
-      setCartItems({...cartItems, [itemId]: newAmount})
+    // Save the updated cart to local storage using the utility function
+    updateCartItems(updatedCart);
+  };
+
+  const updateCartItemCount = (newAmount, itemId) => {
+    // Check if the new quantity is greater than 0
+    if (newAmount > 0) {
+      const updatedCart = {
+        ...cartItems,
+        [itemId]: newAmount,
+      };
+      // Update the cart state
+      setCartItems(updatedCart);
+      // Save the updated cart to local storage
+      updateCartItems(updatedCart);
+    } else {
+      // If the new quantity is 0 or negative, remove the item from the cart
+      removeFromCart(itemId);
     }
+  };
 
   const contextValue = {
     cartItems,
