@@ -1,18 +1,32 @@
+
 import { NavLink } from "react-router-dom";
 import { ShoppingCart } from "phosphor-react";
+import Logout from "../utils/logout/Logout";
 import "./navbar.css";
 
+// eslint-disable-next-line react/prop-types
 export const Navbar = () => {
-  return (
+
+
+const username = localStorage.getItem("username");
+
+
+    return (
     <div className="navbar">
+      <div>
+        {/* when below is "setIsLoggedin ? (", the Welcome renders without the username. but, when it is usernameMessage, the welcome username does not render until you refresh the page */}
+        {username ? (
+          <p className="welcome">Welcome, {username}</p>
+        ): null}
+      </div>
       <div className="links">
         <NavLink to="/" activeClassName="active">
           Shop
         </NavLink>
+        {!username && <NavLink to="/login">Login</NavLink>}
        
-        <NavLink to="/login">Login</NavLink>
-        <NavLink to="/signup">Register</NavLink>
-        <NavLink to="/logout">Log Out</NavLink>
+        {!username && <NavLink to="/signup">Register</NavLink>}
+
         <NavLink
           to="/cart"
           style={{
@@ -25,9 +39,11 @@ export const Navbar = () => {
           <div>
             <ShoppingCart size={32} />
           </div>
-          <div style={{ fontSize: "12px", marginTop: ''}}>Cart</div>
+          <div style={{ fontSize: "12px", marginTop: "" }}>Cart</div>
         </NavLink>
-        <NavLink to="/cart/checkout">Checkout</NavLink>
+      </div>
+      <div>
+      {username ? <Logout /> : null}
       </div>
     </div>
   );

@@ -11,7 +11,7 @@ import './App.css'
 
 function App() {
   // eslint-disable-next-line no-unused-vars
-  const [ token, setToken ] = useState("");
+  const [ token, setToken ] = useState("");  
   const location = useLocation();
 
   //conditionally render cart banner
@@ -37,3 +37,4 @@ function App() {
 }
 
 export default App
+

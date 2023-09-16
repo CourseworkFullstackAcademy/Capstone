@@ -25,10 +25,6 @@ const getDefaultCart = async () => {
 export const ShopContextProvider = (props) => {
   const [cartItems, setCartItems] = useState(getCartItems());
   
-
-
- 
-
   const addToCart = (itemId) => {
     const updatedCart = { ...cartItems, [itemId]: cartItems[itemId] ? cartItems[itemId] + 1 : 1 };
     setCartItems(updatedCart);
@@ -41,11 +37,9 @@ export const ShopContextProvider = (props) => {
     updateCartItems(updatedCart);
   };
 
-  const clearCart = () => {
-    // To clear the entire cart, set it to an empty object
-    const updatedCart = {};
-    setCartItems(updatedCart);
-    updateCartItems(updatedCart);
+  const clearCart = () => { 
+    setCartItems({});
+    localStorage.removeItem('cart');
   };
 
   const updateCartItemCount = (newAmount, itemId) => {
@@ -67,6 +61,7 @@ export const ShopContextProvider = (props) => {
 
   const contextValue = {
     cartItems,
+    setCartItems,
     addToCart,
     removeFromCart,
     updateCartItemCount,

@@ -5,8 +5,9 @@ import { ShopContext } from "../../context/shop-context";
 export const CartItem = (props) => {
  const { id, title, price, image } = props.data;
  const  { cartItems, addToCart, removeFromCart, updateCartItemCount } = useContext(ShopContext);
+ const { newAmount } = props;
 
-  
+
 
   return (
     <div className="product">
@@ -26,9 +27,11 @@ export const CartItem = (props) => {
         
        <button onClick={() => addToCart(id)}> + </button>
       </div>
-      <p>Total: ${price * props.newAmount}</p>
+      <p>Total: ${price * newAmount}</p>
     </div>
+    
   );
+  
 }
 
 CartItem.propTypes = {

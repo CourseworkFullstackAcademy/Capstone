@@ -3,15 +3,18 @@ import { ShopContext } from "../../context/shop-context";
 import { Link } from "react-router-dom";
 import { CartItem } from "./cart-item";
 import { getProducts } from "../../utils/api";
-
+//import { clearCart } from "../../utils/localStorageCart";
 import "./cart.css";
-import { clearCart } from "../../utils/localStorageCart";
+
 
 export default function Cart() {
   // eslint-disable-next-line no-unused-vars
-  const { cartItems, setCartItems } = useContext(ShopContext);
+  const { cartItems, setCartItems, clearCart } = useContext(ShopContext);
   const [products, setProducts] = useState([]);
-  
+  const [isEmpty, setIsEmpty] = useState(true);
+  const [cartKey, setCartKey] = useState(0);
+
+ 
 
   useEffect(() => {
     async function fetchProducts() {
@@ -24,6 +27,21 @@ export default function Cart() {
     }
     fetchProducts();
   }, []);
+
+  useEffect(() => {
+    // Check if the cart is empty
+    const isEmptyCart = Object.values(cartItems).every(
+      (quantity) => quantity === 0
+    );
+    setIsEmpty(isEmptyCart);
+  }, [cartItems]);
+
+  useEffect(() => {
+    // Check if the cart is empty after logout and trigger a re-render
+    if (Object.keys(cartItems).length === 0) {
+      setIsEmpty(true);
+    }
+  }, [cartItems]);
 
   const calculateTotalPrice = () => {
     let total = 0;
@@ -43,10 +61,20 @@ export default function Cart() {
     return totalQuantity;
   };
 
+  const handleClearCart = () => {
+   
+   clearCart();
+   setCartItems({});
+   setIsEmpty(true);
+
+   // Increment the cart key to force re-render of empty cart after logout
+   setCartKey((prevKey) => prevKey + 1);
+
+  };
   
 
   return (
-    <div>
+    <div  key={cartKey}>
       <div className="container mt-5">
         <div className="text-center mb-4">
           <h1>Your Cart Items</h1>
@@ -54,19 +82,26 @@ export default function Cart() {
         <div className="container">
           <div className="row">
             <div className="col-3">
-              {products.map((product) => {
-                if (cartItems[product.id] > 0) {
-                  return (
-                    <div className="col-md-4 mb-4" key={product.id}>
-                      <CartItem
-    data={product}
-    quantity={cartItems[product.id]} 
-    newAmount={cartItems[product.id]} 
-  />
-</div>
-                  );
-                }
-              })}
+              {isEmpty ? (
+                <div><p>Your cart is empty.</p>
+                <div> <Link to="/">Continue Shopping</Link></div>
+                </div>
+                
+              ) : (
+                products.map((product) => {
+                  if (cartItems[product.id] > 0) {
+                    return (
+                      <div className="col-md-4 mb-4" key={product.id}>
+                        <CartItem
+                          data={product}
+                          quantity={cartItems[product.id]}
+                          newAmount={cartItems[product.id]}
+                        />
+                      </div>
+                    );
+                  }
+                })
+              )}
             </div>
           </div>
         </div>
@@ -79,8 +114,9 @@ export default function Cart() {
       </div>
 
       <div className="clear-cart-btn">
-        <button onClick={clearCart}>Clear Cart</button>
+        <button onClick={handleClearCart}>Clear Cart</button>
       </div>
+      <div> <Link to="/">Continue Shopping</Link></div>
     </div>
   );
 }

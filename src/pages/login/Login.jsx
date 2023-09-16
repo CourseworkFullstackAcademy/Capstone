@@ -1,14 +1,15 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
-
+import { useNavigate } from "react-router-dom";
 import { loginUser } from "../../utils/api";
-import { saveTokenSessionStorage} from "../../utils/sessionStorage";
 
+
+// eslint-disable-next-line react/prop-types
 function Login({ setToken }) {
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState("")
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
-  
+  const navigate = useNavigate();
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -23,12 +24,15 @@ function Login({ setToken }) {
 
     try {
       const response = await loginUser(username, password);
-		console.log(response);
+console.log("response.token", response)
 
     if (response.token) {
       const token = response.token;
       setToken(token);
-      saveTokenSessionStorage(token);
+      //saveTokenSessionStorage(token);      
+      localStorage.setItem("accessToken", token)
+      localStorage.setItem("username", username)
+      navigate("/");
     } else {
       setError("Invalid username or password");
     }

@@ -14,6 +14,9 @@
 	font-size: 12px; /* Adjust the font size for the "Cart" text */
   }
   
+  .welcome {
+	color: white;
+  }
 
 .navbar {
 	width: 100%;
