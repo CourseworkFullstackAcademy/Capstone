@@ -5,7 +5,7 @@ import { loginUser } from "../../utils/api";
 
 
 // eslint-disable-next-line react/prop-types
-function Login({ setToken }) {
+function LoginFromCheckout({ setToken }) {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
@@ -32,7 +32,7 @@ console.log("response.token", response)
       //saveTokenSessionStorage(token);      
       localStorage.setItem("accessToken", token)
       localStorage.setItem("username", username)
-      navigate("/");
+      navigate("/cart/checkout");
     } else {
       setError("Invalid username or password");
     }
@@ -74,8 +74,8 @@ console.log("response.token", response)
   );
 }
 
-export default Login;
+export default LoginFromCheckout;
 
-Login.propTypes = {
+LoginFromCheckout.propTypes = {
   setToken: PropTypes.func.isRequired,
 };

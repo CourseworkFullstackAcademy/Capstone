@@ -7,11 +7,14 @@ import CartBanner from "./components/CartBanner";
 import Login from "./pages/login/Login";
 import Signup from "./pages/signup/Signup"
 import Checkout from "./pages/checkout/Checkout"
+import LoginFromCheckout from "./pages/checkout/LoginFromCheckout"
 import './App.css'
 
 function App() {
   // eslint-disable-next-line no-unused-vars
   const [ token, setToken ] = useState("");  
+  // eslint-disable-next-line no-unused-vars
+  const [ id, setId] = useState("")
   const location = useLocation();
 
   //conditionally render cart banner
@@ -27,8 +30,9 @@ function App() {
             <Route path="/" element={ <Home />} />
             <Route path="/cart" element={ <Cart />} />
             <Route path="/login" element={ <Login setToken={setToken} />} />
-            <Route path="/signup" element={ <Signup />} />
+            <Route path="/signup" element={ <Signup setId={setId} />} />
             <Route path="/cart/checkout" element={ <Checkout />} />
+            <Route path="/cart/loginfromcheckout" element={ <LoginFromCheckout setToken={setToken} />} />
           </Routes>
    
     </div>    

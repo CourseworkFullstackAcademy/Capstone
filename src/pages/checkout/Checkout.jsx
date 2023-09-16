@@ -70,7 +70,7 @@ export default function Checkout() {
   return (
     <MDBContainer className="my-5 py-5" style={{maxWidth: '1100px'}}>
       <div className="h1 fw-bolder text-center">Check Out</div>
-      {!username && <div className="h2 text-center">Continue below to checkout as a guest or <Link>Login</Link></div>}
+      {!username && <div className="h2 text-center">Continue below to checkout as a guest or <Link to="/cart/LoginFromCheckout">Login</Link></div>}
       <section>
         <MDBRow>
           <MDBCol md="8">

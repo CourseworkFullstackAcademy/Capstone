@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 function CheckoutItem({ itemId, quantity, products }) {
   // eslint-disable-next-line no-unused-vars
-  const { cartItems, removeFromCart, updateCartItemCount } =
+  const { cartItems, removeFromCart, updateCartItemCount, addToCart } =
     useContext(ShopContext);
 	//is product defined correctly? the console says product.image is undefined
   const product = products.find((p) => p.id === parseInt(itemId));

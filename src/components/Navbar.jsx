@@ -4,17 +4,13 @@ import { ShoppingCart } from "phosphor-react";
 import Logout from "../utils/logout/Logout";
 import "./navbar.css";
 
-// eslint-disable-next-line react/prop-types
+
 export const Navbar = () => {
-
-
 const username = localStorage.getItem("username");
-
 
     return (
     <div className="navbar">
-      <div>
-        {/* when below is "setIsLoggedin ? (", the Welcome renders without the username. but, when it is usernameMessage, the welcome username does not render until you refresh the page */}
+      <div>       
         {username ? (
           <p className="welcome">Welcome, {username}</p>
         ): null}
