@@ -8,6 +8,7 @@ function Signup({ setId }) {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [registrationSuccessful, setRegistrationSuccessful] = useState(false);
+  const [ usernameAvailable, setUsernameAvailable ] = useState("")
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -54,77 +55,77 @@ function Signup({ setId }) {
 
   // message appears that user was succesfully registered and to please log in
 
-  return (
-    <div>
-      {registrationSuccessful ? ( // Conditional rendering based on registration success
-        <div>
-          <p>Thank you for registering! Please</p>
-          <a href="/login">Login</a>
-        </div>
-      ) : (
-        <div>
-          <h2>Sign Up</h2>
-          <form onSubmit={handleSubmit}>
-            <div>
-              <label htmlFor="email">Email:</label>
-              <input
-                type="email"
-                id="email"
-                value={email}
-                onChange={(event) => setEmail(event.target.value)}
-                required
-              />
-            </div>
-            <div>
-              <label htmlFor="username">Username:</label>
-              <input
-                type="text"
-                id="username"
-                value={username}
-                onChange={(event) => setUsername(event.target.value)}
-                required
-              />
-            </div>
-            <div>
-              <label htmlFor="password">Password:</label>
-              <input
-                type="password"
-                id="password"
-                value={password}
-                onChange={handlePasswordChange}
-                required
-              />
-            </div>
-            <div>
-              <p>
-                For enhanced security, your password must have a minimum of 8
-                characters, and include each of the following: 1 capital letter,
-                1 lowercase letter, a number, and a special character (!,@,#, etc).
-              </p>
-            </div>
-            <div>
-              <label htmlFor="confirmPassword">Confirm Password:</label>
-              <input
-                type="password"
-                id="confirmPassword"
-                value={confirmPassword}
-                onChange={handleConfirmPasswordChange}
-                required
-              />
-            </div>
-  
-            <button type="submit">Sign Up</button>
-          </form>
+ return (
+  <div>
+    {registrationSuccessful ? ( // Conditional rendering based on registration success
+      <div>
+        <p>Thank you for registering! Please</p>
+        <a href="/login">Login</a>
+      </div>
+    ) : (
+      <div>
+        <h2>Sign Up</h2>
+        <form onSubmit={handleSubmit}>
           <div>
-            <h5>
-              Already have an account? <a href="/login">Log in</a>
-            </h5>
+            <label htmlFor="email">Email:</label>
+            <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              required
+            />
           </div>
+          <div>
+            <label htmlFor="username">Username:</label>
+            <input
+              type="text"
+              id="username"
+              value={username}
+              onChange={(event) => setUsername(event.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="password">Password:</label>
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={handlePasswordChange}
+              required
+            />
+          </div>
+          <div>
+            <p>
+              For enhanced security, your password must have a minimum of 8
+              characters, and include each of the following: 1 capital letter,
+              1 lowercase letter, a number, and a special character (!,@,#, etc).
+            </p>
+          </div>
+          <div>
+            <label htmlFor="confirmPassword">Confirm Password:</label>
+            <input
+              type="password"
+              id="confirmPassword"
+              value={confirmPassword}
+              onChange={handleConfirmPasswordChange}
+              required
+            />
+          </div>
+
+          <button type="submit">Sign Up</button>
+        </form>
+        <div>
+          <h5>
+            Already have an account? <a href="/login">Log in</a>
+          </h5>
         </div>
-      )}
-    </div>
-  );
-  
+      </div>
+    )}
+  </div>
+);
+
 }
 
 Signup.propTypes = {

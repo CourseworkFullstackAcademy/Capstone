@@ -22,9 +22,6 @@ function Home() {
     fetchProducts();
   }, []);
 
-
-
-
   // Home component rendering:
   return (
     <div className="container mt-5">
