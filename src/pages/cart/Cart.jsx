@@ -80,8 +80,8 @@ export default function Cart() {
           <h1>Your Cart Items</h1>
         </div>
         <div className="container">
-          <div className="row">
-            <div className="col-3">
+          <div className="">
+            <div className="">
               {isEmpty ? (
                 <div><p>Your cart is empty.</p>
                 <div> <Link to="/">Continue Shopping</Link></div>
@@ -91,7 +91,7 @@ export default function Cart() {
                 products.map((product) => {
                   if (cartItems[product.id] > 0) {
                     return (
-                      <div className="col-md-4 mb-4" key={product.id}>
+                      <div className="col" key={product.id}>
                         <CartItem
                           data={product}
                           quantity={cartItems[product.id]}

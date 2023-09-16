@@ -15,6 +15,7 @@ function App() {
   const [ token, setToken ] = useState("");  
   // eslint-disable-next-line no-unused-vars
   const [ id, setId] = useState("")
+  const [ setPaymentSubmitted ] = useState(false)
   const location = useLocation();
 
   //conditionally render cart banner
@@ -31,7 +32,7 @@ function App() {
             <Route path="/cart" element={ <Cart />} />
             <Route path="/login" element={ <Login setToken={setToken} />} />
             <Route path="/signup" element={ <Signup setId={setId} />} />
-            <Route path="/cart/checkout" element={ <Checkout />} />
+            <Route path="/cart/checkout" element={ <Checkout setPaymentSubmitted={setPaymentSubmitted} />} />
             <Route path="/cart/loginfromcheckout" element={ <LoginFromCheckout setToken={setToken} />} />
           </Routes>
    
