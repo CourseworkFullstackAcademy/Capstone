@@ -7,7 +7,8 @@ import CartBanner from "./components/CartBanner";
 import Login from "./pages/login/Login";
 import Signup from "./pages/signup/Signup"
 import Checkout from "./pages/checkout/Checkout"
-import LoginFromCheckout from "./pages/checkout/LoginFromCheckout"
+import LoginFromCheckout from "./pages/checkout/LoginFromCheckout";
+import SingleProduct from "./pages/Product/SingleProduct";
 import './App.css'
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
           <Routes>       
             <Route path="/" element={ <Home />} />
             <Route path="/cart" element={ <Cart />} />
+            <Route path="/product/:id" element={ <SingleProduct />} />
             <Route path="/login" element={ <Login setToken={setToken} />} />
             <Route path="/signup" element={ <Signup setId={setId} />} />
             <Route path="/cart/checkout" element={ <Checkout setPaymentSubmitted={setPaymentSubmitted} />} />

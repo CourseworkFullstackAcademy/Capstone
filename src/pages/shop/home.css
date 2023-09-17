@@ -35,6 +35,10 @@
 	  width: calc(50% - 20px);
 	}
   }
+
+  .product-link:hover {
+ color: grey;
+  }
    
 /* .shopTitle {
 	margin: 3rem;

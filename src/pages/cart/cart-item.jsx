@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Link } from 'react-router-dom';
 import PropTypes from "prop-types";
 import { ShopContext } from "../../context/shop-context";
 
@@ -11,13 +12,15 @@ export const CartItem = (props) => {
 
   return (
     <div className="product">
-      <div className="product-image-container">
+      <Link className="product-link text-dark text-decoration-none"><div className="product-image-container">
         <img src={image} alt={title} className="product-image img-fluid" />
       </div>
       <div className="product-details">
         <h3>{title}</h3>
+        <h5 className="text-primary">Click here for more product info</h5>
         <p>Price: ${price}</p>
       </div>
+      </Link>
       <div className="quantity-controls">
       <button onClick={() => removeFromCart(id)}> - </button>
           <input
