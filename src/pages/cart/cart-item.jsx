@@ -12,7 +12,7 @@ export const CartItem = (props) => {
 
   return (
     <div className="product">
-      <Link className="product-link text-dark text-decoration-none"><div className="product-image-container">
+      <Link to={`/product/${id}`} className="product-link text-dark text-decoration-none"><div className="product-image-container">
         <img src={image} alt={title} className="product-image img-fluid" />
       </div>
       <div className="product-details">
