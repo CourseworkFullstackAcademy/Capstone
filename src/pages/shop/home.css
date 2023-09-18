@@ -1,7 +1,9 @@
-.product-image-container {
+
+
+.img-container {
 	position: relative;
-	width: 100%; 
-	padding-top: 75%; 
+	max-height: 40%;
+	width: 100%;  
 	overflow: hidden;
   }
   
@@ -14,14 +16,25 @@
 	object-fit: contain; 
   }
   
+  .card-body {
+	text-align: center;
+  }
   
   .addToCartBttn {
 	background-color: transparent;
 	border: 2px solid rgb(19, 19, 19);
 	width: 80%; 
-	padding: 5px 0; 
 	border-radius: 15px;
-	margin-top: 10px;
+
+  }
+
+  .removeFromCartBttn {
+	background-color: rgb(251, 86, 86);
+	border: 2px solid rgb(161, 151, 151);
+	width: 60%; 
+display: inline-block;
+	border-radius: 15px;
+
   }
   
   .addToCartBttn:hover {
@@ -40,6 +53,35 @@
  color: grey;
   }
    
+  .carousel-item {
+	height: 50vh;
+  }
+.card {
+box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+padding: .5rem .5rem;
+height: vh
+}
+.footer-cta {
+box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px;
+}
+.price {
+color: #263238;
+font-size: 24px;
+}
+
+.card-title {
+color:#263238
+}
+
+.sale {
+color: #E53935
+}
+
+.sale-badge {
+background-color: #E53935
+}
+
+
 /* .shopTitle {
 	margin: 3rem;
 	text-align: center;

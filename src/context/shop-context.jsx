@@ -11,16 +11,9 @@ export const ShopContext = createContext({
   addToCart: () => {},
   removeFromCart: () => {},
   updateCartItemCount: () => {},
-});
+  deleteFromCart: () => {},
+})
 
-const getDefaultCart = async () => {
-  let cart = {};
-  const products = await getProducts();
-  for (let i = 0; i < products.length; i++) {
-    cart[products[i].id] = 0;
-  }
-  return cart;
-};
 
 export const ShopContextProvider = (props) => {
   const [cartItems, setCartItems] = useState(getCartItems());
@@ -31,8 +24,17 @@ export const ShopContextProvider = (props) => {
     updateCartItems(updatedCart);
   };
 
+  //deletes one item at a time
    const removeFromCart = (itemId) => {
     const updatedCart = { ...cartItems, [itemId]: cartItems[itemId] ? cartItems[itemId] - 1 : 1 };
+    setCartItems(updatedCart);
+    updateCartItems(updatedCart);
+  };
+
+  //deletes all of that item from the cart
+  const deleteFromCart = (itemId) => {
+    const updatedCart = { ...cartItems };
+    delete updatedCart[itemId];
     setCartItems(updatedCart);
     updateCartItems(updatedCart);
   };
@@ -66,7 +68,7 @@ export const ShopContextProvider = (props) => {
     removeFromCart,
     updateCartItemCount,
     clearCart,
-   // getTotalCartAmount
+    deleteFromCart
   };
 
   return (
