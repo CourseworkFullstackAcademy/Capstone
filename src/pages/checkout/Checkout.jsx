@@ -32,7 +32,7 @@ export default function Checkout() {
     expirationDate: "",
     cvv: "",
   });
-  const [ setPaymentSubmitted] = useState(false);
+  const [ paymentSubmitted, setPaymentSubmitted] = useState(false);
 
   const username = localStorage.getItem("username");
 
@@ -86,18 +86,26 @@ export default function Checkout() {
     expirationDate: "",
     cvv: "",
   });
-  document.getElementById("firstName").value = "";
-  document.getElementById("lastName").value = "";
-  document.getElementById("companyName").value = "";
-  document.getElementById("address").value = "";
-  document.getElementById("email").value = "";
-  document.getElementById("phone").value = "";
-  document.getElementById("additionalInfo").value = "";
+  // document.getElementById("firstName").value = "";
+  // document.getElementById("lastName").value = "";
+  // document.getElementById("companyName").value = "";
+  // document.getElementById("address").value = "";
+  // document.getElementById("email").value = "";
+  // document.getElementById("phone").value = "";
+  // document.getElementById("additionalInfo").value = "";
 
   setPaymentSubmitted(true);
   };
 
   return (
+   <> {paymentSubmitted ? (
+      <div>
+        <p>Payment has been submitted successfully.</p>
+        <div>
+          <Link to="/">Continue Shopping</Link>
+        </div>
+      </div>
+    ) : (
     <MDBContainer className="my-5 py-5" style={{ maxWidth: "1100px" }}>
       <div className="h1 fw-bolder text-center">Check Out</div>
       {!username && (
@@ -265,5 +273,6 @@ export default function Checkout() {
         </MDBRow>
       </section>
     </MDBContainer>
-  );
+)}
+</>)
 }

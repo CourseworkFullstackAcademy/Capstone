@@ -1,10 +1,10 @@
 import { NavLink } from "react-router-dom";
 import { ShoppingCart } from "phosphor-react";
 import Logout from "../utils/logout/Logout";
-// import ProductSearch from "./ProductSearch";
+import ProductSearch from "./ProductSearch";
 import "./navbar.css";
 
-export const Navbar = () => {
+export const Navbar = ({products, setProducts, filteredProducts, setFilteredProducts, setSearch}) => {
   const username = localStorage.getItem("username");
   
   return (
@@ -12,7 +12,7 @@ export const Navbar = () => {
       <div>
         {username ? <p className="welcome">Welcome, {username}</p> : null}
       </div>
-      {/* <div> <ProductSearch /></div> */}
+      <div> <ProductSearch products={products} setProducts={setProducts} setSearch={setSearch}/></div>
       <div className="links">
         <NavLink to="/" activeClassName="active">
           Shop

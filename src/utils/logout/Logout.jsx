@@ -10,10 +10,9 @@ function Logout() {
 
   const handleLogout = () => {
    clearCart();
-   localStorage.removeItem("username"); 
-  localStorage.removeItem("accessToken"); 
+   localStorage.clear();
    navigate("/");
-  //cart does not rerender as empty after logout, the cart is cleared, but the user has to refresh the page to render an empty cart after logout
+  
 
   };
 

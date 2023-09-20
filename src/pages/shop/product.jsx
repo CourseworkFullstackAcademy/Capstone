@@ -15,6 +15,7 @@ export const Product = (props) => {
   const handleDeleteClick = () => {
     deleteFromCart(id);
   };
+// console.log(cartItems);
 
   return (
     <section>

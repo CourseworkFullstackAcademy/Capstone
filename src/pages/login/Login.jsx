@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { ShopContext } from "../../context/shop-context";
 import PropTypes from "prop-types";
 import { useNavigate, Link } from "react-router-dom";
 import { loginUser, getCarts, getUsers } from "../../utils/api";
+import { updateCartItems } from "../../utils/localStorageCart";
 
 
 // eslint-disable-next-line react/prop-types
@@ -9,6 +11,8 @@ function Login({ setToken }) {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
+  //should I use useConext(ShopContext) below somemhow? 
+  const {setCartItems} = useContext(ShopContext);
 
   const navigate = useNavigate();
 
@@ -39,8 +43,31 @@ function Login({ setToken }) {
         const userCart = cartsData.find((cart) => cart.userId === userId);
          
         if (userCart) {
-          localStorage.setItem("cart: ", userCart)
-          console.log("User's Cart:", userCart);
+          // Initialize an empty cart object
+        const updatedCart = {};
+
+        // Loop through the products array in userCart
+        userCart.products.forEach((productItem) => {
+          const productId = productItem.productId;
+          const quantity = productItem.quantity;
+          
+          // Add the product to the updatedCart
+          updatedCart[productId] = quantity;
+          // console.log([productId]);
+          // console.log([quantity]);
+          console.log("updated cart", updatedCart)
+        });
+
+        // Set the updated cart to the state and local storage
+        setCartItems(updatedCart);
+        updateCartItems(updatedCart);
+       
+
+
+          //uncomment out below if adding cart from api does not work
+          //stringify data from api in order to save it to the local storage
+          // localStorage.setItem("cart: ", JSON.stringify(userCart))
+          console.log("User's Cart from api:", userCart);
         } else {
           console.log(`${username}'s Cart not found.`);
         }
@@ -64,6 +91,7 @@ function Login({ setToken }) {
       localStorage.setItem("accessToken", token)
       localStorage.setItem("username", username)
       fetchUserCart();
+      localStorage.getItem("userCart", )
       navigate("/");
     } else {
       setError("Invalid username or password");

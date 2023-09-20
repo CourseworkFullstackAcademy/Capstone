@@ -16,7 +16,14 @@ export const ShopContext = createContext({
 
 
 export const ShopContextProvider = (props) => {
-  const [cartItems, setCartItems] = useState(getCartItems());
+
+  //delete 3 lines belwo if does not work
+  const storedCart = localStorage.getItem("userCart");
+  const initialCart = storedCart ? JSON.parse(storedCart) : {};
+  const [cartItems, setCartItems] = useState(initialCart);
+
+  //uncomment if does not work
+  // const [cartItems, setCartItems] = useState(getCartItems());
   
   const addToCart = (itemId) => {
     const updatedCart = { ...cartItems, [itemId]: cartItems[itemId] ? cartItems[itemId] + 1 : 1 };

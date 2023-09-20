@@ -3,19 +3,19 @@ import { ShopContext } from "../../context/shop-context";
 import { Link } from "react-router-dom";
 import { CartItem } from "./cart-item";
 import { getProducts } from "../../utils/api";
-//import { clearCart } from "../../utils/localStorageCart";
+import { clearCart } from "../../utils/localStorageCart";
 import "./cart.css";
 
 
 export default function Cart() {
   // eslint-disable-next-line no-unused-vars
-  const { cartItems, setCartItems, clearCart } = useContext(ShopContext);
+  const { cartItems, setCartItems} = useContext(ShopContext);
   const [products, setProducts] = useState([]);
   const [isEmpty, setIsEmpty] = useState(true);
   const [cartKey, setCartKey] = useState(0);
 
  
-
+//tie fetching with context when user is authenticated. Global state once the user is logged in, where only if authenticated, then grab their cart with cart id or something.
   useEffect(() => {
     async function fetchProducts() {
       try {
@@ -66,6 +66,7 @@ export default function Cart() {
    clearCart();
    setCartItems({});
    setIsEmpty(true);
+
 
    // Increment the cart key to force re-render of empty cart after logout
    setCartKey((prevKey) => prevKey + 1);

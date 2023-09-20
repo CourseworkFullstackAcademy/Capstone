@@ -19,12 +19,11 @@ export default function SingleProduct() {
           return;
         }
         const productData = await response.json();
-        
+
         if (!productData || Object.keys(productData).length === 0) {
-          setError('Product data is empty or invalid');
+          setError("Product data is empty or invalid");
           return;
         }
-        console.log("Product Data:", productData);
         setProduct(productData);
       } catch (error) {
         setError(`Error fetching product: ${error.message}`);
@@ -35,15 +34,15 @@ export default function SingleProduct() {
   }, [id, setProduct]);
 
   return (
-    <div className="product">
+    <>
       {product ? (
-        <>
-          <div>
-            <h1>Product Details</h1>
-          </div>
-          <div className="product-image-container">
-            <img src={product.image} alt={product.title} className="product-image img-fluid" />
-          </div>
+        <div className="body vh-100">
+          <div className="product-container"><h1>Product Details</h1>
+          <img
+            src={product.image}
+            alt={product.title}
+            className="img-fluid"
+          />
           <div className="product-details">
             <h3>{product.title}</h3>
             <p>Price: ${product.price}</p>
@@ -51,21 +50,23 @@ export default function SingleProduct() {
           <div>
             <h5>Description</h5>
             <p>{product.description}</p>
-          </div>
+          </div></div>
           <div className="quantity-controls">
             <button onClick={() => removeFromCart(product.id)}> - </button>
             <input
               value={cartItems[product.id]}
-              onChange={(e) => updateCartItemCount(Number(e.target.value), product.id)}
+              onChange={(e) =>
+                updateCartItemCount(Number(e.target.value), product.id)
+              }
             />
             <button onClick={() => addToCart(product.id)}> + </button>
           </div>
           <p>Total: ${product.price * cartItems[product.id]}</p>
-        </>
+        </ div>
       ) : (
         <p>Loading...</p>
       )}
       {error && <p>Error: {error}</p>}
-    </div>
+    </>
   );
 }
