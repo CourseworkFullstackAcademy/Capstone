@@ -29,7 +29,6 @@
   }
   
   .links {
-	margin-left: 2rem;
 	display: flex;
 	align-items: center;
   }
@@ -49,7 +48,7 @@
   }
 
   .register-link {
-	margin-right: 4rem
+	margin-right: 2rem
   }
 
 

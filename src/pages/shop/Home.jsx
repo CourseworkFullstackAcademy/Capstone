@@ -56,7 +56,7 @@ function Home({ products, filteredProducts, setFilteredProducts }) {
         </select>
       </div>
 
-      <div className="row p-5">
+      <div className="row p-4 m-0">
         {searchedProducts.map((product) => (
           <div key={product.id} className="col-md-4 mb-4">
             <Product data={product} />

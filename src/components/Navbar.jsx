@@ -1,3 +1,5 @@
+
+
 import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
 import { ShoppingCart } from "phosphor-react";
@@ -12,7 +14,7 @@ export const Navbar = ({ products, setProducts, setSearch }) => {
   return (
     <div className="navbar">
       <div className="logo-container">
-        <img src={logoImage} alt="Logo" className="logo" />
+        <img src={logoImage} alt="Logo" className="ml-5 logo" />
       </div>
       <div>         
           <ProductSearch
@@ -32,7 +34,7 @@ export const Navbar = ({ products, setProducts, setSearch }) => {
         <div>
           {username ? <p className="welcome">Welcome, {username}</p> : null}
         </div>
-        <NavLink
+        <div className="pl-5"><NavLink
           to="/cart"
           style={{
             display: "flex",
@@ -41,11 +43,13 @@ export const Navbar = ({ products, setProducts, setSearch }) => {
             textAlign: "center",
           }}
         >
-          <div>
+        
+          <div >
             <ShoppingCart size={32} />
           </div>
           <div style={{ fontSize: "12px", float: "right"}}>Cart</div>
-        </NavLink>
+        </NavLink></div>
+        
       </div>
       <div>{username ? <Logout /> : null}</div>
     </div>
