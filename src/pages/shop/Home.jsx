@@ -1,78 +1,49 @@
-import { useState, useEffect } from 'react';
-import { Product } from './product';
-import "./home.css"
+import { useState, useEffect } from "react";
+import { Product } from "./product";
+import PropTypes from "prop-types";
+import "./home.css";
 
+function Home({ products, filteredProducts, setFilteredProducts }) {
+  const [selectedCategory, setSelectedCategory] = useState(""); 
+  const [sortOrder, setSortOrder] = useState("asc");
+  const searchedProducts = filteredProducts ? filteredProducts : products;
 
+  useEffect(() => {
+    // Logic for filtering products based on selectedCategory
+    const filtered = products.filter((product) => {
+      if (!selectedCategory) return true; // Show all products if no category is selected
+      return product.category === selectedCategory;
+    });
 
-function Home({products, setProducts, filteredProducts, setFilteredProducts}) {  
-  const [selectedCategory, setSelectedCategory] = useState(''); // State for selected category
-  const [sortOrder, setSortOrder] = useState('asc'); 
- const searchedProducts = filteredProducts ? filteredProducts : products
- 
- useEffect(() => {
-  // Logic for filtering products based on selectedCategory
-  const filtered = products.filter((product) => {
-    if (!selectedCategory) return true; // Show all products if no category is selected
-    return product.category === selectedCategory;
-  });
+    //sort by price and alphabeticlly
+    let sorted = [...filtered];
 
-  // Logic for sorting products based on sortOrder
-
-  // only sort by price
-  // const sorted = [...filtered].sort((a, b) => {
-  //   if (sortOrder === 'asc') {
-  //     return a.price - b.price;
-  //   } else {
-  //     return b.price - a.price;
-  //   }
-  // });
-
-  //sort by price and alphabeticlly
-  let sorted = [...filtered];
-
-    if (sortOrder === 'price-asc') {
+    if (sortOrder === "price-asc") {
       sorted = sorted.sort((a, b) => a.price - b.price);
-    } else if (sortOrder === 'price-desc') {
+    } else if (sortOrder === "price-desc") {
       sorted = sorted.sort((a, b) => b.price - a.price);
-    } else if (sortOrder === 'alphabetical') {
+    } else if (sortOrder === "alphabetical") {
       sorted = sorted.sort((a, b) => a.title.localeCompare(b.title));
     }
 
+    setFilteredProducts(sorted);
+  }, [selectedCategory, sortOrder, products, setFilteredProducts]);
 
-  setFilteredProducts(sorted);
-}, [selectedCategory, sortOrder, products, setFilteredProducts]);
 
-  // Home component rendering:
   return (
-    <div className="container mt-5">
-      <h1 className="text-center mb-4">Shop GREAT Sales </h1>
-
-{/* Sort only by price */}
-      {/* <div className="text-center mb-5 filter-sort">
+    <div className="body p-0 ">
+      <h1 className="text-center mb-4 pt-5">Shop GREAT Sales </h1>
+      <div className="text-center mb-0 filter-sort">
         <select
           value={selectedCategory}
           onChange={(e) => setSelectedCategory(e.target.value)}
+          className="mr-4"
         >
           <option value="">All Categories</option>
           <option value="men's clothing">Men&apos;s Clothing</option>
-          <option value="jewelery">Jewelery</option>
+          <option value="jewelery">Jewelry</option>
           <option value="electronics">Electronics</option>
           <option value="women's clothing">Women&apos;s Clothing</option>
-        </select>
-        <button onClick={() => setSortOrder('asc')}>Sort Ascending</button>
-        <button onClick={() => setSortOrder('desc')}>Sort Descending</button>
-      </div> */}
-
-      <div className="text-center mb-5 filter-sort filter-sort">
-        <select
-          value={selectedCategory}
-          onChange={(e) => setSelectedCategory(e.target.value)}
-        >
-          <option value="">All Categories</option>
-          <option value="men's clothing">Men's Clothing</option>
-          <option value="jewelry">Jewelry</option>
-          <option value="electronics">Electronics</option>
-          <option value="women's clothing">Women's Clothing</option>
         </select>
         <select
           value={sortOrder}
@@ -84,17 +55,23 @@ function Home({products, setProducts, filteredProducts, setFilteredProducts}) {
           <option value="alphabetical">Alphabetical</option>
         </select>
       </div>
-     
-      <div className="row">
-     {(searchedProducts.map((product) => (
+
+      <div className="row p-5">
+        {searchedProducts.map((product) => (
           <div key={product.id} className="col-md-4 mb-4">
-          <Product data={product} />
-        </div>
-        )))}
+            <Product data={product} />
+          </div>
+        ))}
       </div>
-      </div>
-     );
+    </div>
+  );
 }
 
 export default Home;
 
+Home.propTypes = {
+  products: PropTypes.array.isRequired,
+  filteredProducts: PropTypes.array,
+  setFilteredProducts: PropTypes.func,
+  filter: PropTypes.string,
+};

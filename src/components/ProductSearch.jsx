@@ -1,25 +1,26 @@
-import { useState } from "react";
+import PropTypes from "prop-types";
 
-function ProductSearch({ products, setProducts, filteredProducts, setFilteredProducts, setSearch }) {
- 
-
-
-
-
+function ProductSearch({ setSearch }) {
   const handleSearchInputChange = (event) => {
-    setSearch(event.target.value);}
-
-
+    setSearch(event.target.value);
+  };
 
   return (
     <div>
       <form>
-        <input className="my-3" onChange={handleSearchInputChange} />
-         
-          <button  type="submit" onChange={(e) => setSearch(e.target.value)}
-              placeholder='Search'>Search             
-            </button>
-      
+        {/* add onSubmit={} */}
+        <input
+          className="my-3 mr-2"
+          type="text"
+          onChange={handleSearchInputChange}
+        />
+        <button
+          type="submit"
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="Search"
+        >
+          Search
+        </button>
       </form>
     </div>
   );
@@ -27,4 +28,6 @@ function ProductSearch({ products, setProducts, filteredProducts, setFilteredPro
 
 export default ProductSearch;
 
-
+ProductSearch.propTypes = {
+  setSearch: PropTypes.object.isRequired,
+};

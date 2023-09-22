@@ -21,7 +21,7 @@ function App() {
   const location = useLocation();
   // eslint-disable-next-line no-unused-vars
   const [products, setProducts] = useState([]);
-  const [filteredProducts, setFilteredProducts] = useState("");
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const [search, setSearch] = useState("");
 
   useEffect(() => {
@@ -29,7 +29,6 @@ function App() {
       try {
         const productsData = await getProducts();
         setProducts(productsData);
-        console.log([productsData])
       } catch (error) {
         console.error("Error fetching products:", error);
       }
@@ -60,9 +59,9 @@ function App() {
         setFilteredProducts={setFilteredProducts}
         setSearch={setSearch}
       />
-      {isCartPage && <CartBanner />}{" "}
+      {isCartPage && <CartBanner />}
       {/* Render CartBanner only on the cart page */}
-      <Routes>
+    <div className="app">  <Routes>
         <Route
           path="/"
           element={
@@ -132,7 +131,7 @@ function App() {
             />
           }
         />
-      </Routes>
+      </Routes></div>
     </div>
   );
 }

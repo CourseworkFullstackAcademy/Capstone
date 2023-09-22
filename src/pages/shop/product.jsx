@@ -15,20 +15,22 @@ export const Product = (props) => {
   const handleDeleteClick = () => {
     deleteFromCart(id);
   };
-// console.log(cartItems);
+  // console.log(cartItems);
 
   return (
-    <section>
+    <section className="body ">
       <div className="text-center">
         <div className="row">
+          {/* putting d-flex in below div messes up card */}
           <div className="col mb-4">
             <div className="card">
-              <div
-                className="img-container bg-image hover-zoom ripple ripple-surface ripple-surface-light"
-                data-mdb-ripple-color="light"
-              >
+              <div className=" img-container" data-mdb-ripple-color="light">
                 <Link to={`/product/${id}`}>
-                  <img src={image} alt={title} className=" img-fluid" />
+                  <img
+                    src={image}
+                    alt={title}
+                    className="bg-image hover-zoom ripple ripple-surface ripple-surface-light img-fluid img"
+                  />
                 </Link>
                 <Link to={`/product/${id}`}>
                   <div className="mask">
@@ -42,26 +44,27 @@ export const Product = (props) => {
                   </div>
                 </Link>
               </div>
-              <div className="card-body">
+              <div className="card-body d-flex flex-column justify-content-center align-items-center">
                 <Link to={`/product/${id}`} className="text-reset">
                   <h5 className="card-title mb-2">{title}</h5>
                 </Link>
                 <h6 className="mb-3 price">${price}</h6>
               </div>
+              <div className="d-flex flex-column justify-content-center align-items-center w-100">
               <button
-                className="addToCartBttn mb-2 d-flex justify-content-center"
+                className=" mb-2 d-flex justify-content-center align-items-center btn btn-outline-dark rounded-pill"
                 onClick={() => addToCart(id)}
               >
                 Add To Cart {cartItemAmount > 0 && <> ({cartItemAmount}) </>}
               </button>
-             {isItemInCart && (
-        <button
-          className="removeFromCartBttn d-flex justify-content-center"
-          onClick={handleDeleteClick}
-        >
-          Remove From Cart
-        </button>
-      )}
+              {isItemInCart && (
+                <button
+                  className="removeFromCartBttn mb-2 d-flex justify-content-center align-items-center btn btn-outline-dark rounded-pill"
+                  onClick={handleDeleteClick}
+                >
+                  Remove From Cart
+                </button>
+              )}</div>
             </div>
           </div>
         </div>

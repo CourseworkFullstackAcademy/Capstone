@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { useNavigate, Link } from "react-router-dom";
 import { loginUser, getCarts, getUsers } from "../../utils/api";
 import { updateCartItems } from "../../utils/localStorageCart";
+import './login.css';
 
 
 // eslint-disable-next-line react/prop-types
@@ -102,35 +103,49 @@ function Login({ setToken }) {
   }
 };
 
+
+
   return (
-    <div>
-      <h2>Login</h2>
+    <div className="wrapper">
+    <div className="center-container">
+      <div className="title"><span><h2>Login</h2></span></div>
       {error && <p className="error">{error}</p>}
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="username">Username:</label>
-          <input
-            type="text"
-            autoComplete="username"
-            id="username"
-            value={username}
-            onChange={handleUsernameChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            autoComplete="current-password"
-            id="password"
-            value={password}
-            onChange={handlePasswordChange}
-          />
-        </div>
-        <button type="submit">Log In</button>
-      </form>
-      <div><h5>Don&apos;t have an account yet? <Link to="/signup">Sign Up</Link></h5></div>
+      <div className="form">
+        <form onSubmit={handleSubmit}>
+          <i className="username-icon"></i>
+          <div className="form-input">
+            <label htmlFor="username"></label>
+            <input
+              type="text"
+              autoComplete="username"
+              id="username"
+              value={username}
+              onChange={handleUsernameChange}
+              placeholder="Username"
+            />
+          </div>
+          <div className="form-input">
+          <i className="password-icon"></i>
+            <label htmlFor="password"></label>
+            <input
+              type="password"
+              autoComplete="current-password"
+              id="password"
+              value={password}
+              onChange={handlePasswordChange}
+              placeholder="Password"
+            />
+          </div>
+          <button type="submit" className="submit-btn">Log In</button>
+        </form>
+      </div>
+      <div className="new-acct">
+        <div><h6>New to eCommerce App?</h6></div>
+        <div><Link to="/signup">Create your eCommerce App account</Link></div>
+      </div>
     </div>
+  </div>
+    
   );
 }
 

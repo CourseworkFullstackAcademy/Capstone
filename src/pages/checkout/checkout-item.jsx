@@ -20,7 +20,7 @@ if (!product) {
 
   return (
     <div className="mb-4">
-      <Link to={`/product/${itemId}`}><div className="d-flex">
+      <Link to={`/product/${itemId}`} className="text-decoration-none"><div className="d-flex">
         <img
           src={product.image}
           alt={product.title}
