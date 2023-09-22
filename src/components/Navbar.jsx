@@ -34,7 +34,7 @@ export const Navbar = ({ products, setProducts, setSearch }) => {
         <div>
           {username ? <p className="welcome">Welcome, {username}</p> : null}
         </div>
-        <div className="pl-5"><NavLink
+        <div ><NavLink
           to="/cart"
           style={{
             display: "flex",
