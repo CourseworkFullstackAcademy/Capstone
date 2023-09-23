@@ -78,52 +78,60 @@ export default function Cart() {
    setCartKey((prevKey) => prevKey + 1);
 
   };
-  
-console.log([isEmpty]);
+
   return (
-    <div  key={cartKey}>
-      <div className="container mt-5">
-        <div className="text-center mb-4">
-          <h1>Your Cart Items</h1>
-        </div>
+    <div key={cartKey}>
+  <div className="container mt-5">
+    {isEmpty ? (
+      <div className="mt-0 pb-0 vh-100">
+        <p>Your cart is empty.</p>
+        <div> <Link to="/">Continue Shopping</Link></div>
+      </div>
+    ) : (
+      <div className="container">
         <div className="container">
-          <div className="">
-            <div className="">
-              {isEmpty ? (
-                <div><p>Your cart is empty.</p>
-                <div> <Link to="/">Continue Shopping</Link></div>
+          <div className="text-center mb-4 ">
+            <h1>Your Cart Items</h1>
+          </div>
+          <div className="row">
+            <div className="col">
+              {/* Render the subtotal, clear cart button, and continue shopping link */}
+              <div className="subtotal pl-5 mt-5">
+                <h1>Subtotal</h1>
+                <h2>&#40; {calculateTotalQuantity()} &#41; items</h2>
+                <h2>Total Price: ${calculateTotalPrice()}</h2>
+                <Link to="checkout">Proceed to Checkout</Link>
+                <div className="clear-cart-btn">
+                  <button onClick={handleClearCart}>Clear Cart</button>
                 </div>
-                
-              ) : (
-                products.map((product) => {
-                  if (cartItems[product.id] > 0) {
-                    return (
-                      <div className="col" key={product.id}>
-                        <CartItem
-                          data={product}
-                          quantity={cartItems[product.id]}
-                          newAmount={cartItems[product.id]}
-                        />
-                      </div>
-                    );
-                  }
-                })
-              )}
+                <div> <Link to="/">Continue Shopping</Link></div>
+              </div>
+            </div>
+            <div className="col-md-5 text-center mb-4">
+              
+              
+                          
+                  {products.map((product) => {
+                    if (cartItems[product.id] > 0) {
+                      return (
+                        <div  key={product.id}>
+                          <CartItem
+                            data={product}
+                            quantity={cartItems[product.id]}
+                            newAmount={cartItems[product.id]}
+                          />
+                        </div>
+                      );
+                    }
+                  })}                
+              
             </div>
           </div>
         </div>
       </div>
-      <div className="subtotal">
-        <h1>Subtotal</h1>
-        <h2>&#40; {calculateTotalQuantity()} &#41; items</h2>
-        <h2>Total Price: ${calculateTotalPrice()}</h2>
-        <Link to="checkout">Proceed to Checkout</Link>
-      </div>
+    )}
+  </div>
+</div>
 
-      <div className="clear-cart-btn">
-        <button onClick={handleClearCart}>Clear Cart</button>
-      </div>
-      <div> <Link to="/">Continue Shopping</Link></div>
-    </div>
   );
 }

@@ -16,36 +16,28 @@ export const CartItem = (props) => {
     <section>
       <div className="text-center">
         <div className="row">
-          <div className="col-lg-3 col-md-6 mb-4">
+          <div className="mb-4">
             <div className="card">
-              <div className="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
+              <div className="">
                 <Link to={`/product/${id}`}>
-                  <img src={image} alt={title} className="w-100" />
+                  <img src={image} alt={title} className="w-50 mb-3" />
                 </Link>
-                <Link to={`/product/${id}`}>
-                  <div className="mask">
-                    <div className="d-flex justify-content-start align-items-end h-100">
-                     
-                    </div>
-                  </div>
-                  <div className="hover-overlay">
-                    <div className="mask" style={{ backgroundColor: 'rgba(251, 251, 251, 0.15)' }}></div>
-                  </div>
-                </Link>
+                <Link to={`/product/${id}`}></Link>
               </div>
-              <div className="card-body">
+              
                 <Link to={`/product/${id}`} className="text-reset">
                   <h5 className="card-title mb-2">{title}</h5>
                 </Link>
                 <h6 className="mb-3 price">${price}</h6>
-              </div>
+             
               <div className="quantity-controls">
-                <button onClick={() => removeFromCart(id)}>-</button>
+                <button onClick={() => removeFromCart(id)} className=" px-2 font-weight-bold">-</button>
                 <input
                   value={cartItems[id]}
                   onChange={(e) => updateCartItemCount(Number(e.target.value), id)}
+                  style={{ width: '10%', marginLeft:'.3rem', marginRight:'.3rem', textAlign:'center'}}
                 />
-                <button onClick={() => addToCart(id)}>+</button>
+                <button onClick={() => addToCart(id)} className=" px-2 font-weight-bold">+</button>
               </div>
               <p>Total: ${price * newAmount}</p>
               <button
