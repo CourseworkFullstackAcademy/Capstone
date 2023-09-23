@@ -33,8 +33,8 @@ export default function Checkout() {
     cvv: "",
   });
   const [ paymentSubmitted, setPaymentSubmitted] = useState(false);
-
-  const username = localStorage.getItem("username");
+//Below is for conditional rendering of login option
+  //const username = localStorage.getItem("username");
 
   useEffect(() => {
     async function fetchProducts() {
@@ -107,19 +107,19 @@ export default function Checkout() {
       </div>
     ) : (
     <MDBContainer className=" py-5" style={{ maxWidth: "1100px" }}>
-      <div className="h1 fw-bolder text-center">Check Out</div>
-      {!username && (
+      <div className="h1 fw-bolder pb-4 text-center">Check Out</div>
+      {/* {!username && (
         <div className="h2 text-center">
           Continue below to checkout as a guest or{" "}
           <Link to="/cart/LoginFromCheckout">Login</Link>
         </div>
-      )}
+      )} */}
       <section>
         <MDBRow>
           <MDBCol md="8">
            
 
-            <MDBAccordion className="card mb-4">
+            <MDBAccordion className="card mb-4 ml-5">
               <MDBAccordionItem
                 collapseId={1}
                 className="border-0"
@@ -130,7 +130,7 @@ export default function Checkout() {
             </MDBAccordion>
 
             
-            <MDBCol md="8" className="mb-4">
+            <MDBCol md="12" className="mb-4 ml-5">
             <MDBCard className="mb-4">
               <MDBCardHeader className="py-3">
                 <MDBTypography

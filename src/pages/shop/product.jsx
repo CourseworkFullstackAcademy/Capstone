@@ -22,7 +22,7 @@ export const Product = (props) => {
       <div className="text-center">
         <div className="row">
           {/* putting d-flex in below div messes up card */}
-          <div className="col mb-4">
+          <div className="col mb-4 d-flex flex-column justify-content-center align-items-center">
             <div className="card">
               <div className=" img-container" data-mdb-ripple-color="light">
                 <Link to={`/product/${id}`}>

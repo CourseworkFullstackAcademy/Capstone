@@ -27,7 +27,7 @@ export default function SingleProduct() {
   const [product, setProduct] = useState(null);
   const [error, setError] = useState(null);
 
-  const cartItemAmount = cartItems[id];
+  //const cartItemAmount = cartItems[id];
   const isItemInCart = id in cartItems;
 
   useEffect(() => {
