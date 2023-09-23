@@ -13,13 +13,17 @@ import {
   MDBCardBody,
   MDBCardImage,
   MDBCardTitle,
-  MDBIcon,
 } from "mdb-react-ui-kit";
 
 export default function SingleProduct() {
   const { id } = useParams();
-  const { cartItems, addToCart, removeFromCart, updateCartItemCount, deleteFromCart } =
-    useContext(ShopContext);
+  const {
+    cartItems,
+    addToCart,
+    removeFromCart,
+    updateCartItemCount,
+    deleteFromCart,
+  } = useContext(ShopContext);
   const [product, setProduct] = useState(null);
   const [error, setError] = useState(null);
 
@@ -48,71 +52,74 @@ export default function SingleProduct() {
 
     fetchProduct();
   }, [id, setProduct]);
-if (!product) return null;
+  if (!product) return null;
 
-const handleDeleteClick = () => {
-  deleteFromCart(id);
-};
+  const handleDeleteClick = () => {
+    deleteFromCart(id);
+  };
 
   return (
     <>
       {product ? (
-         <MDBContainer fluid className="py-5">
-         <MDBRow className="justify-content-center">
-           <MDBCol md="6">
-             <MDBCard className="text-black">
-               <MDBIcon fab icon="apple" size="lg" className="px-3 pt-3 pb-2" />
-               <MDBCardTitle><div className="text-center">{product.title}</div></MDBCardTitle>
-               <MDBCardImage
-                 src={product.image}
-                 position="top"
-                 alt={product.title}
-               />
-               <MDBCardBody>
-                 <div className="text-center">
-                   <MDBCardTitle>Description</MDBCardTitle>
-                   <p className="text-muted text-left mb-4">{product.description}</p>
-                 </div>
+        <MDBContainer fluid className="py-5  d-flex flex-column justify-content-center align-items-center">
+          <MDBCol className="d-flex flex-column justify-content-center align-items-center">
+            <MDBCard className="d-flex flex-column justify-content-center align-items-center">
+              <MDBRow className="justify-content-center">
+                <MDBCardTitle>
+                  <div className="text-center title">{product.title}</div>
+                </MDBCardTitle>
+              </MDBRow>
+              <MDBRow className="">
+                <div className="text-center pb-4 price">
+                  <>Price:</>{' '}{' '}
+                  <>${product.price}</>
+                </div>
+              </MDBRow>
+
+              <MDBCardImage
+                src={product.image}
+                position="top"
+                alt={product.title}
+                className="img-fluid w-60 h-auto"
+              />
+              <MDBCardBody>
+                <div className="pt-3 quantity-controls">
+                  <button onClick={() => removeFromCart(product.id)} className=" px-2 font-weight-bold">-</button>
+                  <input
+                    value={cartItems[product.id]}
+                    onChange={(e) =>
+                      updateCartItemCount(Number(e.target.value), product.id)
+                    }
+                    style={{ width: '10%', marginLeft:'.3rem', marginRight:'.3rem', textAlign:'center'}}
+                  />
+                  <button onClick={() => addToCart(product.id)} className=" px-2 font-weight-bold"> + </button>
+                </div >
+                <p className="mr-5  font-weight-bold">Total: ${product.price * product.id}</p>
+                <div>
+                  {isItemInCart && (
+                    <button
+                      className="removeFromCartBttn d-flex justify-content-right"
+                      onClick={handleDeleteClick}
+                    >
+                      Remove From Cart
+                    </button>
+                  )}
                  
-                 <div className="d-flex justify-content-between total font-weight-bold mt-4">
-                   <span>Price</span>
-                   <span>${product.price}</span>
-                 </div>
-                 <div className="quantity-controls">
-                 <button
-                   className=" mb-2 d-flex justify-content-center addToCartBttn"
-                   onClick={() => addToCart(id)}
-                 >
-                   Add To Cart {cartItemAmount > 0 && <> ({cartItemAmount}) </>}
-                 </button>
-                 <button onClick={() => removeFromCart(product.id)}> - </button>
-                 <input
-                   value={cartItems[product.id]}
-                   onChange={(e) =>
-                     updateCartItemCount(Number(e.target.value), product.id)
-                   }
-                 />
-                 <button onClick={() => addToCart(product.id)}> + </button>
-               </div>
-               <p>Total: ${product.price * product.id}</p>
-               <div>{isItemInCart && (
-           <button
-             className="removeFromCartBttn d-flex justify-content-center"
-             onClick={handleDeleteClick}
-           >
-             Remove From Cart
-           </button>)}</div>
-               </MDBCardBody>
-             </MDBCard>
-           </MDBCol>
-         </MDBRow>
-       </MDBContainer>
+                </div>
+              </MDBCardBody>
+              <div className="text-center">
+                    <MDBCardTitle>Description</MDBCardTitle>
+                    <p className="text-muted text-left mb-4">
+                      {product.description}
+                    </p>
+                  </div>
+            </MDBCard>
+          </MDBCol>
+        </MDBContainer>
       ) : (
-        <p>Loading...</p>
+        <p className="text-center fw-600">Loading...</p>
       )}
       {error && <p>Error: {error}</p>}
-
-     
     </>
   );
 }

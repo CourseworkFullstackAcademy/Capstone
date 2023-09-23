@@ -4,7 +4,7 @@ import { getProducts } from "./utils/api";
 import Home from "./pages/shop/Home";
 import Cart from "./pages/cart/Cart";
 import { Navbar } from "./components/Navbar";
-import CartBanner from "./components/CartBanner";
+//import CartBanner from "./components/CartBanner/CartBanner";
 import Login from "./pages/login/Login";
 import Signup from "./pages/signup/Signup";
 import Checkout from "./pages/checkout/Checkout";
@@ -48,7 +48,7 @@ function App() {
   }, [search, products]);
 
   //conditionally render cart banner
-  const isCartPage = location.pathname === "/cart";
+  // const isCartPage = location.pathname === "/cart";
 
   return (
     <div id="main-section">
@@ -59,7 +59,7 @@ function App() {
         setFilteredProducts={setFilteredProducts}
         setSearch={setSearch}
       />
-      {isCartPage && <CartBanner />}
+      {/* {isCartPage && <CartBanner />} */}
       {/* Render CartBanner only on the cart page */}
     <div className="app">  <Routes>
         <Route

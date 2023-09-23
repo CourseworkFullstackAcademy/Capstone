@@ -106,7 +106,7 @@ export default function Checkout() {
         </div>
       </div>
     ) : (
-    <MDBContainer className="my-5 py-5" style={{ maxWidth: "1100px" }}>
+    <MDBContainer className=" py-5" style={{ maxWidth: "1100px" }}>
       <div className="h1 fw-bolder text-center">Check Out</div>
       {!username && (
         <div className="h2 text-center">

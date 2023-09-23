@@ -81,7 +81,7 @@ export default function Cart() {
 
   return (
     <div key={cartKey}>
-  <div className="container mt-5">
+  <div className="container pt-5">
     {isEmpty ? (
       <div className="mt-0 pb-0 vh-100">
         <p>Your cart is empty.</p>
