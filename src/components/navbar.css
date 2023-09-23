@@ -51,5 +51,10 @@
 	margin-right: 2rem
   }
 
+  .cart {
+	align-items: right;
+	padding-right: 0;
+  }
+
 
 

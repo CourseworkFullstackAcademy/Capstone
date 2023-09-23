@@ -1,0 +1,11 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+
+.banner {
+	min-height: 6rem;
+    border-bottom: 5px solid #254D4C;
+	font-family: 'Franklin Gothic Large', 'Arial Narrow', Arial, sans-serif;
+	font-size: 1.5rem;
+}

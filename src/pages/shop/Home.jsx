@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Product } from "./product";
 import PropTypes from "prop-types";
+import HomeBanner from "../../components/HomeBanner/HomeBanner";
 import "./home.css";
 
 function Home({ products, filteredProducts, setFilteredProducts }) {
@@ -32,7 +33,8 @@ function Home({ products, filteredProducts, setFilteredProducts }) {
 
   return (
     <div className="body p-0 ">
-      <h1 className="text-center mb-4 pt-5">Shop GREAT Sales </h1>
+      <HomeBanner className=" m-0 p-0"/>
+      <h1 className="text-center mb-4 pt-4 title">Shop GREAT Sales </h1>
       <div className="text-center mb-0 filter-sort">
         <select
           value={selectedCategory}

@@ -9,7 +9,7 @@ function Signup({ setId }) {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [registrationSuccessful, setRegistrationSuccessful] = useState(false);
   // eslint-disable-next-line no-unused-vars
-  const [ usernameAvailable, setUsernameAvailable ] = useState("")
+ //const [ usernameAvailable, setUsernameAvailable ] = useState("")
 
   const handleSubmit = async (event) => {
     event.preventDefault();

@@ -8,6 +8,11 @@
 
 }
 
+.title {
+	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	/* I changed the color in an h1 element but cannot find it, so I put the imortant to override it */
+	color: #002120 !important;
+}
 
 .img-container {
 	position: relative;

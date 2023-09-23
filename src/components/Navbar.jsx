@@ -24,6 +24,9 @@ export const Navbar = ({ products, setProducts, setSearch }) => {
           />
         </div>
       <div className="links">
+      <div>
+          {username ? <p className="welcome mr-3">Welcome, {username}</p> : null}
+        </div>
         <NavLink to="/" activeClassName="active">
           Shop
         </NavLink>
@@ -31,9 +34,7 @@ export const Navbar = ({ products, setProducts, setSearch }) => {
 
         {!username && <NavLink to="/signup" className={"register-link"}>Register</NavLink>}
        
-        <div>
-          {username ? <p className="welcome">Welcome, {username}</p> : null}
-        </div>
+       
         <div ><NavLink
           to="/cart"
           style={{
