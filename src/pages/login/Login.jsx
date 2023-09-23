@@ -112,7 +112,6 @@ function Login({ setToken }) {
       {error && <p className="error">{error}</p>}
       <div className="form">
         <form onSubmit={handleSubmit}>
-          <i className="username-icon"></i>
           <div className="form-input">
             <label htmlFor="username"></label>
             <input
@@ -125,7 +124,6 @@ function Login({ setToken }) {
             />
           </div>
           <div className="form-input">
-          <i className="password-icon"></i>
             <label htmlFor="password"></label>
             <input
               type="password"

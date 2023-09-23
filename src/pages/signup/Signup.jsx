@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { addUser } from "../../utils/api";
 import PropTypes from "prop-types";
+import "./signup.css"
 
 function Signup({ setId }) {
   const [email, setEmail] = useState("");
@@ -64,37 +66,43 @@ function Signup({ setId }) {
         <a href="/login">Login</a>
       </div>
     ) : (
-      <div>
-        <h2>Sign Up</h2>
+      <div className="wrapper">
+      <div className="center-container">
+      <div className="title"><span><h2>Sign Up</h2></span></div>
+      <div className="form">
         <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="email">Email:</label>
+          <div className="mb-2">
+            <label htmlFor="email"></label>
             <input
               type="email"
+              autoComplete="email"
               id="email"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
               required
+              placeholder="Email"
             />
           </div>
-          <div>
-            <label htmlFor="username">Username:</label>
+          <div className="mb-2">
+            <label htmlFor="username"></label>
             <input
               type="text"
               id="username"
               value={username}
               onChange={(event) => setUsername(event.target.value)}
               required
+              placeholder="Username"
             />
           </div>
           <div>
-            <label htmlFor="password">Password:</label>
+            <label htmlFor="password"></label>
             <input
               type="password"
               id="password"
               value={password}
               onChange={handlePasswordChange}
               required
+              placeholder="Password"
             />
           </div>
           <div>
@@ -104,24 +112,28 @@ function Signup({ setId }) {
               1 lowercase letter, a number, and a special character (!,@,#, etc).
             </p>
           </div>
-          <div>
-            <label htmlFor="confirmPassword">Confirm Password:</label>
+          <div className="mb-3">
+            <label htmlFor="confirmPassword"></label>
             <input
               type="password"
               id="confirmPassword"
               value={confirmPassword}
               onChange={handleConfirmPasswordChange}
               required
+              placeholder="Confirm Password"
             />
           </div>
 
-          <button type="submit">Sign Up</button>
+          <button type="submit" className="signup-btn">Sign Up</button>
         </form>
-        <div>
-          <h5>
-            Already have an account? <a href="/login">Log in</a>
-          </h5>
         </div>
+        <div>
+          <h6>
+            Already have an account? 
+          </h6>
+        </div>
+        <div><Link to="/login">Log In</Link></div>
+      </div>
       </div>
     )}
   </div>
