@@ -29,15 +29,21 @@ export default function Cart() {
   }, []);
 
   useEffect(() => {
+    console.log("cart items to check after refresh", cartItems);
     // Check if the cart is empty
     const isEmptyCart = Object.values(cartItems).every(
       (quantity) => quantity === 0
     );
     setIsEmpty(isEmptyCart);
+    
   }, [cartItems]);
 
   useEffect(() => {
     // Check if the cart is empty after logout and trigger a re-render
+    //if the localstorage.getItem(cart) === 0, have to use soemthing to check if the cart OBJECT is empty in local storrage
+     //if the localstorage.getItem(cart) === 0, have to use soemthing to check if the cart OBJECT is empty in local storage
+    //  if (Object.keys(localStorage.getItem("cart")).length === 0) {
+    //   setIsEmpty(true);
     if (Object.keys(cartItems).length === 0) {
       setIsEmpty(true);
     }
@@ -73,7 +79,7 @@ export default function Cart() {
 
   };
   
-
+console.log([isEmpty]);
   return (
     <div  key={cartKey}>
       <div className="container mt-5">
