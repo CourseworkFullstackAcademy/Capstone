@@ -61,9 +61,10 @@ function Signup({ setId }) {
  return (
   <div>
     {registrationSuccessful ? ( // Conditional rendering based on registration success
-      <div>
-        <p>Thank you for registering! Please</p>
-        <a href="/login">Login</a>
+      <div className="wrapper m-0 p-0">
+        <div className="row"><div className="row-4 d-flex flex-column justify-content-center align-items-center ty"><p>Thank you for registering! </p></div>
+        <div className="row-4 d-flex flex-column justify-content-center align-items-center login"><a href="/login">Please Login</a></div></div>
+       
       </div>
     ) : (
       <div className="wrapper">

@@ -1,3 +1,13 @@
+.ty {
+	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	font-size: 3rem;
+	color: #002120 !important;
+  }
+
+  .login {
+	font-size: 2rem;
+  }
+
 /* Make the component take up 100% of the viewport height */
 .wrapper {
 	margin: 0;
