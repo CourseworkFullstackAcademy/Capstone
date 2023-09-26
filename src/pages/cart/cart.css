@@ -1,3 +1,8 @@
 .checkout-description {
 	text-decoration: none !important;
 }
+
+.continue-shopping a {
+color:rgb(4, 4, 154);
+text-decoration: none
+}

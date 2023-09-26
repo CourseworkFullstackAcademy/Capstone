@@ -33,7 +33,8 @@
   .card-body {
 	text-align: center;
 	display:flex;
-  }  
+	flex-direction: column;
+}
 
   .removeFromCartBttn {
 	background-color: rgb(251, 86, 86);

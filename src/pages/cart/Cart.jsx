@@ -81,7 +81,7 @@ export default function Cart() {
 
   return (
     <div key={cartKey}>
-  <div className="container pt-5">
+  <div className="container pt-5 cart">
     {isEmpty ? (
       <div className="mt-0 pb-0 vh-100">
         <p>Your cart is empty.</p>
@@ -95,22 +95,22 @@ export default function Cart() {
           </div>
           <div className="row">
             <div className="col">
+
               {/* Render the subtotal, clear cart button, and continue shopping link */}
               <div className="subtotal pl-5 mt-5">
                 <h1>Subtotal</h1>
                 <h2>&#40; {calculateTotalQuantity()} &#41; items</h2>
                 <h2>Total Price: ${calculateTotalPrice()}</h2>
-                <Link to="checkout">Proceed to Checkout</Link>
+                <div className="cart-links">
+                <Link to="checkout" className="proceed-to-checkout lign-items-center"><button className="checkout-btn mt-3 mb-2 p-2 rounded">Proceed to Checkout</button></Link>
                 <div className="clear-cart-btn">
-                  <button onClick={handleClearCart}>Clear Cart</button>
+                  <button onClick={handleClearCart} className="checkout-btn mb-2 p-2 rounded">Clear Cart</button>
                 </div>
-                <div> <Link to="/">Continue Shopping</Link></div>
+                <div className="continue-shopping text-center mt-4"> <Link to="/"> <h3>&#8592;</h3> Continue Shopping</Link></div></div>
               </div>
             </div>
+
             <div className="col-md-5 text-center mb-4">
-              
-              
-                          
                   {products.map((product) => {
                     if (cartItems[product.id] > 0) {
                       return (

@@ -1,5 +1,5 @@
-import { Routes, Route, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
+import { useState, useEffect, useLocation } from "react";
 import { getProducts } from "./utils/api";
 import Home from "./pages/shop/Home";
 import Cart from "./pages/cart/Cart";
@@ -18,7 +18,8 @@ function App() {
   // eslint-disable-next-line no-unused-vars
   const [id, setId] = useState("");
   const [setPaymentSubmitted] = useState(false);
-  const location = useLocation();
+  //below used to conditionally render cart banner
+ //const location = useLocation();
   // eslint-disable-next-line no-unused-vars
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);

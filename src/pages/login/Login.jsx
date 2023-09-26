@@ -93,7 +93,7 @@ function Login({ setToken }) {
       localStorage.setItem("username", username)
       fetchUserCart();
       localStorage.getItem("userCart", )
-      navigate("/");
+      navigate(-1);
     } else {
       setError("Invalid username or password");
     }

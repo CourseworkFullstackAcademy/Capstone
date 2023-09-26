@@ -21,7 +21,7 @@ import {
   MDBTypography,
 } from "mdb-react-ui-kit";
 
-import "../cart/cart.css";
+import "./checkout.css";
 
 export default function Checkout() {
   const [products, setProducts] = useState([]);
@@ -34,7 +34,7 @@ export default function Checkout() {
   });
   const [ paymentSubmitted, setPaymentSubmitted] = useState(false);
 //Below is for conditional rendering of login option
-  //const username = localStorage.getItem("username");
+  const username = localStorage.getItem("username");
 
   useEffect(() => {
     async function fetchProducts() {
@@ -65,6 +65,13 @@ export default function Checkout() {
     }
     return totalQuantity;
   };
+
+  //it says totalPlusTax must be a number, need to look into if calculateTotalPrice is a number
+  // const totalPlusTax = (calculateTotalPrice) => {
+  //   const taxRate = 0.075;
+  //   const totalPlusTax = calculateTotalPrice * taxRate;
+  //   return totalPlusTax
+  // }
 
   const handlePaymentInfoChange = (e) => {
     const { name, value } = e.target;
@@ -98,9 +105,9 @@ export default function Checkout() {
   };
 
   return (
-   <> {paymentSubmitted ? (
-      <div>
-        <p>Payment has been submitted successfully.</p>
+   <div> {paymentSubmitted ? (
+      <div className="payment">
+        <p>Thank You for your order! Your payment has been submitted successfully.</p>
         <div>
           <Link to="/">Continue Shopping</Link>
         </div>
@@ -108,12 +115,12 @@ export default function Checkout() {
     ) : (
     <MDBContainer className=" py-5" style={{ maxWidth: "1100px" }}>
       <div className="h1 fw-bolder pb-4 text-center">Check Out</div>
-      {/* {!username && (
+      {!username && (
         <div className="h2 text-center">
           Continue below to checkout as a guest or{" "}
-          <Link to="/cart/LoginFromCheckout">Login</Link>
+          <Link to="/login">Login</Link>
         </div>
-      )} */}
+      )} 
       <section>
         <MDBRow>
           <MDBCol md="8">
@@ -164,7 +171,7 @@ export default function Checkout() {
               </MDBCardBody>
             </MDBCard>
 
-            <section>
+            <section className="card">
               <h2>Payment Information</h2>
               <form onSubmit={handlePaymentSubmit}>
                 <div className="mb-3">
@@ -274,5 +281,5 @@ export default function Checkout() {
       </section>
     </MDBContainer>
 )}
-</>)
+</div>)
 }
