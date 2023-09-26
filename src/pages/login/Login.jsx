@@ -107,7 +107,7 @@ function Login({ setToken }) {
 
   return (
     <div className="wrapper">
-    <div className="center-container">
+    <div className="login-container">
       <div className="title"><span><h2>Login</h2></span></div>
       {error && <p className="error">{error}</p>}
       <div className="form">

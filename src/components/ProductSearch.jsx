@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import "./navbar.css"
 
 function ProductSearch({ setSearch }) {
   const handleSearchInputChange = (event) => {
@@ -18,6 +19,7 @@ function ProductSearch({ setSearch }) {
           type="submit"
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search"
+          className="nav-btn rounded"
         >
           Search
         </button>

@@ -3,6 +3,11 @@
 }
 
 .continue-shopping a {
-color:rgb(4, 4, 154);
+color:rgb(4, 4, 193);
 text-decoration: none
+}
+
+.cart-list {
+	margin-right: 0 !important;
+	padding-right: 0 !important;
 }

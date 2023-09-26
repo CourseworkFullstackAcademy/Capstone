@@ -61,8 +61,9 @@ function Signup({ setId }) {
  return (
   <div>
     {registrationSuccessful ? ( // Conditional rendering based on registration success
-      <div className="wrapper m-0 p-0">
-        <div className="row"><div className="row-4 d-flex flex-column justify-content-center align-items-center ty"><p>Thank you for registering! </p></div>
+      <div className="wrapper  m-0 p-0">
+        {/* Thank you for registering does not center on phone sizes. Ininspect, it ays the body has a text align of left */}
+        <div className="row  d-flex flex-column justify-content-center align-items-center"><div className="row-4 d-flex flex-column justify-content-center align-items-center ty"><p>Thank you for registering! </p></div>
         <div className="row-4 d-flex flex-column justify-content-center align-items-center login"><a href="/login">Please Login</a></div></div>
        
       </div>
@@ -107,7 +108,7 @@ function Signup({ setId }) {
             />
           </div>
           <div>
-            <p>
+            <p className="pt-2">
               For enhanced security, your password must have a minimum of 8
               characters, and include each of the following: 1 capital letter,
               1 lowercase letter, a number, and a special character (!,@,#, etc).
@@ -133,7 +134,7 @@ function Signup({ setId }) {
             Already have an account? 
           </h6>
         </div>
-        <div><Link to="/login">Log In</Link></div>
+        <div ><Link to="/login">Log In</Link></div>
       </div>
       </div>
     )}

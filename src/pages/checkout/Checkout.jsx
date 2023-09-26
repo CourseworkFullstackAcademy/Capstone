@@ -86,6 +86,7 @@ export default function Checkout() {
 
     clearCart();
     console.log("Payment Information:", paymentInfo);
+    console.log([cartItems]);
     // Reset the paymentInfo
   setPaymentInfo({
     cardNumber: "",
@@ -122,8 +123,8 @@ export default function Checkout() {
         </div>
       )} 
       <section>
-        <MDBRow>
-          <MDBCol md="8">
+        <MDBRow >
+          <MDBCol md="6">
            
 
             <MDBAccordion className="card mb-4 ml-5">
@@ -137,7 +138,7 @@ export default function Checkout() {
             </MDBAccordion>
 
             
-            <MDBCol md="12" className="mb-4 ml-5">
+            <MDBCol md="10" className="mb-4 ml-5">
             <MDBCard className="mb-4">
               <MDBCardHeader className="py-3">
                 <MDBTypography
@@ -241,13 +242,26 @@ export default function Checkout() {
             </section>
           </MDBCol>
           </MDBCol>
-          <MDBCol md="4" className="mb-4 position-statics">
-            <MDBCard className="mb-4">
-              <MDBCardHeader className="py-3">
+          {/* list of items in cart. tried to make the colum wider */}
+          <MDBCol md="6" className="cart-list mb-4 ">
+            <MDBCard className="mb-4 mr-0 ">
+              <MDBCardHeader className="">
                 <MDBTypography tag="h5" className="mb-0 text-font">
-                  {calculateTotalQuantity()} item(s)
-                  
+                  {calculateTotalQuantity()} item(s)                  
                 </MDBTypography>
+                <MDBCardFooter className="mt-4">
+                <MDBListGroup flush="true" >
+                  <MDBListGroupItem className="d-flex justify-content-between align-items-center border-0 px-0 pb-0 text-muted px-2">
+                    Subtotal
+                    <span>${calculateTotalPrice()}</span>
+                  </MDBListGroupItem>
+                  <MDBListGroupItem className="d-flex justify-content-between align-items-center px-0 fw-bold text-uppercase px-2">
+                    Total to pay
+                    <span>${calculateTotalPrice()}</span>
+                  </MDBListGroupItem>
+                  
+                </MDBListGroup>
+              </MDBCardFooter>
               </MDBCardHeader>
 
               {/* Map through cart items and render a Card component for each item */}
@@ -261,18 +275,7 @@ export default function Checkout() {
                   />
                 ))}
               </MDBCardBody>
-              <MDBCardFooter className="mt-4">
-                <MDBListGroup flush="true" >
-                  <MDBListGroupItem className="d-flex justify-content-between align-items-center border-0 px-0 pb-0 text-muted px-2">
-                    Subtotal
-                    <span>${calculateTotalPrice()}</span>
-                  </MDBListGroupItem>
-                  <MDBListGroupItem className="d-flex justify-content-between align-items-center px-0 fw-bold text-uppercase px-2">
-                    Total to pay
-                    <span>${calculateTotalPrice()}</span>
-                  </MDBListGroupItem>
-                </MDBListGroup>
-              </MDBCardFooter>
+             
             </MDBCard>
           </MDBCol>
 

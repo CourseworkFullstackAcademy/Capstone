@@ -56,5 +56,10 @@
 	padding-right: 0;
   }
 
+  .nav-btn {
+	border: 15px;
+	padding: .2rem;
+	background-color: #DFD3D8;
+  }
 
 

@@ -9,7 +9,7 @@
 	display: flex;
   }
 
-  .center-container {
+  .login-container {
 	text-align: center;
 	display: flex;
     flex-direction: column;
@@ -40,6 +40,7 @@
   .title {
 	color: #EDE3E8;
 	margin-bottom: 1rem;
+	margin-top: 0;
   }
 
   .form {

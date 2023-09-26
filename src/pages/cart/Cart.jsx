@@ -29,7 +29,7 @@ export default function Cart() {
   }, []);
 
   useEffect(() => {
-    console.log("cart items to check after refresh", cartItems);
+    // console.log("cart items to check after refresh", cartItems);
     // Check if the cart is empty
     const isEmptyCart = Object.values(cartItems).every(
       (quantity) => quantity === 0
@@ -104,9 +104,9 @@ export default function Cart() {
                 <div className="cart-links">
                 <Link to="checkout" className="proceed-to-checkout lign-items-center"><button className="checkout-btn mt-3 mb-2 p-2 rounded">Proceed to Checkout</button></Link>
                 <div className="clear-cart-btn">
-                  <button onClick={handleClearCart} className="checkout-btn mb-2 p-2 rounded">Clear Cart</button>
+                  <button onClick={handleClearCart} className="checkout-btn mb-0 p-2 rounded">Clear Cart</button>
                 </div>
-                <div className="continue-shopping text-center mt-4"> <Link to="/"> <h3>&#8592;</h3> Continue Shopping</Link></div></div>
+                <div className="continue-shopping text-center mt-0 fw-bolder"> <Link to="/"> <h1>&#8592;</h1> Continue Shopping</Link></div></div>
               </div>
             </div>
 

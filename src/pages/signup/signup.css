@@ -6,6 +6,8 @@
 
   .login {
 	font-size: 2rem;
+	font-weight: bold;
+	color:rgb(4, 4, 115);
   }
 
 /* Make the component take up 100% of the viewport height */
@@ -17,6 +19,7 @@
 	justify-content: center; /* Center the content vertically */
 	align-items: center; /* Center the content horizontally */
 	display: flex;
+	text-align: center;
   }
 
   .center-container {
@@ -50,6 +53,7 @@
   .title {
 	color: #EDE3E8;
 	margin-bottom: 1rem;
+	margin-top: 3rem;
   }
 
   .form {
