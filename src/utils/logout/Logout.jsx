@@ -1,25 +1,35 @@
 import "./logout.css";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
+// eslint-disable-next-line no-unused-vars
+import { useContext, useState, useEffect } from "react";
 import { ShopContext } from "../../context/shop-context";
 
 function Logout() {
- const { clearCart } = useContext(ShopContext);
-
+  const { clearCart } = useContext(ShopContext);
+  // eslint-disable-next-line no-unused-vars
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-   clearCart();
-   localStorage.removeItem("username"); 
-  localStorage.removeItem("accessToken"); 
-   navigate("/");
-  //cart does not rerender as empty after logout, the cart is cleared, but the user has to refresh the page to render an empty cart after logout
 
+  //useEffect to rerender after logout on home page
+  // useEffect(() => {    
+  //   setIsLoggedIn(false);
+  // },[isLoggedIn] );
+
+  const handleLogout = () => {
+    clearCart();
+    localStorage.clear();
+    setIsLoggedIn(false);
+    navigate("/")
+    location.reload()
+    
   };
 
   return (
     <div>
-      <button onClick={handleLogout}>Logout</button>
+      <button onClick={handleLogout} className="nav-btn rounded">
+        Logout
+      </button>
     </div>
   );
 }

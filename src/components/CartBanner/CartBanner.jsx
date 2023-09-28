@@ -1,5 +1,6 @@
 //import user from ../utils/sessionStorage;
 //import { useState } from react;
+import "./cart-banner.css"
 
 function CartBanner() {
 	//const [username, setUsername] = useState([]);

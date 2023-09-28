@@ -1,44 +1,79 @@
-import { useState, useEffect } from 'react';
-import { getProducts } from '../../utils/api';
-import { Product } from './product';
-import "./home.css"
+import { useState, useEffect } from "react";
+import { Product } from "./product";
+import PropTypes from "prop-types";
+import HomeBanner from "../../components/HomeBanner/HomeBanner";
+import "./home.css";
 
-
-//Right now, only renders list of fetched products
-function Home() {
-  const [products, setProducts] = useState([]);
+function Home({ products, filteredProducts, setFilteredProducts }) {
+  const [selectedCategory, setSelectedCategory] = useState(""); 
+  const [sortOrder, setSortOrder] = useState("asc");
+  const searchedProducts = filteredProducts ? filteredProducts : products;
 
   useEffect(() => {
-    async function fetchProducts() {
-      try {
-        const productsData = await getProducts();
-        setProducts(productsData);
-         
-      } catch (error) {
-        console.error('Error fetching products:', error); 
-      }
+    // Logic for filtering products based on selectedCategory
+    const filtered = products.filter((product) => {
+      if (!selectedCategory) return true; // Show all products if no category is selected
+      return product.category === selectedCategory;
+    });
+
+    //sort by price and alphabeticlly
+    let sorted = [...filtered];
+
+    if (sortOrder === "price-asc") {
+      sorted = sorted.sort((a, b) => a.price - b.price);
+    } else if (sortOrder === "price-desc") {
+      sorted = sorted.sort((a, b) => b.price - a.price);
+    } else if (sortOrder === "alphabetical") {
+      sorted = sorted.sort((a, b) => a.title.localeCompare(b.title));
     }
 
-    fetchProducts();
-  }, []);
+    setFilteredProducts(sorted);
+  }, [selectedCategory, sortOrder, products, setFilteredProducts]);
 
 
-
-
-  // Home component rendering:
   return (
-    <div className="container mt-5">
-      <h1 className="text-center mb-4">Shop GREAT Sales </h1>
-     
-      <div className="row">
-        {products.map((product) => (
+    <div className="body p-0 ">
+      <HomeBanner className=" m-0 p-0"/>
+      <h1 className="text-center mb-4 pt-4 title">Shop GREAT Sales </h1>
+      <div className="text-center mb-0 filter-sort">
+        <select
+          value={selectedCategory}
+          onChange={(e) => setSelectedCategory(e.target.value)}
+          className="mr-4"
+        >
+          <option value="">All Categories</option>
+          <option value="men's clothing">Men&apos;s Clothing</option>
+          <option value="jewelery">Jewelry</option>
+          <option value="electronics">Electronics</option>
+          <option value="women's clothing">Women&apos;s Clothing</option>
+        </select>
+        <select
+          value={sortOrder}
+          onChange={(e) => setSortOrder(e.target.value)}
+        >
+          <option value="">Sort by</option>
+          <option value="price-asc">Price (Low to High)</option>
+          <option value="price-desc">Price (High to Low)</option>
+          <option value="alphabetical">Alphabetical</option>
+        </select>
+      </div>
+
+      <div className="row p-4 m-0">
+        {searchedProducts.map((product) => (
           <div key={product.id} className="col-md-4 mb-4">
-          <Product data={product} />
-        </div>
+            <Product data={product} />
+          </div>
         ))}
       </div>
-      </div>
-     );
+    </div>
+  );
 }
 
 export default Home;
+
+Home.propTypes = {
+  products: PropTypes.array.isRequired,
+  filteredProducts: PropTypes.array,
+  setFilteredProducts: PropTypes.func,
+  filter: PropTypes.string,
+};

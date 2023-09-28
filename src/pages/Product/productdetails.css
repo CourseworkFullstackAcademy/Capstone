@@ -1,0 +1,16 @@
+.body {
+	margin: 0 !important; 
+}
+
+.card {
+	width: 70%
+}
+
+.title {
+	font-size: 2.5rem;
+}
+
+.price {
+	font-size: 2rem;
+	font-weight: bold;
+}

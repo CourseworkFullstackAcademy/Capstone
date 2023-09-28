@@ -1,27 +1,48 @@
-.product-image-container {
+* {
+	padding: 0;
+	margin: 0;	
+}
+
+.body{
+	background-color: #BDA5AB;
+
+}
+
+.title {
+	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	/* I changed the color in an h1 element but cannot find it, so I put the imortant to override it */
+	color: #002120 !important;
+}
+
+.img-container {
 	position: relative;
-	width: 100%; 
-	padding-top: 75%; 
+	max-height: 30%;
+	width: 100%;  
 	overflow: hidden;
   }
   
-  .product-image {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	object-fit: contain; 
-  }
+.img {
+	max-height: 9rem;
+	transition: transform 0.3s ease;
+}
+
+.img:hover {
+	transform: scale(1.1); 
+}
   
-  
-  .addToCartBttn {
-	background-color: transparent;
-	border: 2px solid rgb(19, 19, 19);
-	width: 80%; 
-	padding: 5px 0; 
+  .card-body {
+	text-align: center;
+	display:flex;
+	flex-direction: column;
+}
+
+  .removeFromCartBttn {
+	background-color: rgb(251, 86, 86);
+	border: 2px solid rgb(161, 151, 151);
+	
+display: inline-block;
 	border-radius: 15px;
-	margin-top: 10px;
+
   }
   
   .addToCartBttn:hover {
@@ -35,7 +56,38 @@
 	  width: calc(50% - 20px);
 	}
   }
-   
+
+
+.card {
+box-shadow: rgba(0, 0, 0, 0.24) 0px 8px 15px;
+padding: 1rem 1rem;
+}
+
+
+.footer-cta {
+box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px;
+}
+.price {
+color: #263238;
+font-size: 24px;
+}
+
+.card-title {
+color:#263238
+}
+
+
+
+
+  /* .product-image {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: contain; 
+  } */
+
 /* .shopTitle {
 	margin: 3rem;
 	text-align: center;

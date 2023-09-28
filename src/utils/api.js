@@ -9,8 +9,8 @@ export const getProducts = async () => {
   };
 
 //Get SINGLE Product by ID
-  export const getProductById = async (productId) => {
-	const response = await fetch(`${BASE_URL}/products/${productId}`);
+  export const getProductById = async (id) => {
+	const response = await fetch(`${BASE_URL}/products/${id}`);
 	const data = await response.json();
 	return data;
   };

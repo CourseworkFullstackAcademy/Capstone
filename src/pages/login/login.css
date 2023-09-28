@@ -1,0 +1,65 @@
+/* Make the component take up 100% of the viewport height */
+.wrapper {
+	margin: 0;
+	padding: 0;
+	height: 100vh;
+	box-sizing: border-box;
+	justify-content: center; /* Center the content vertically */
+	align-items: center; /* Center the content horizontally */
+	display: flex;
+  }
+
+  .login-container {
+	text-align: center;
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+	width: 60rem;
+  }
+
+  .btn {
+	width: 60%;
+  }
+
+  .form-input {
+	display: flex;
+  align-items: center; 
+  margin-bottom: 1rem;
+  }
+
+  h6 {
+	margin-top: .5rem;
+  }
+
+  .title .form .submit-btn h6 .create-acct-btn {
+	display: block;
+	text-align: center
+  }
+
+  .title {
+	color: #EDE3E8;
+	margin-bottom: 1rem;
+	margin-top: 0;
+  }
+
+  .form {
+	border-width: 2px;
+	border-style: solid;
+	background-color: #DBCCD1;
+	border-color: #254D4C;
+	max-width: max-content;
+	padding: 1rem;
+	margin-bottom: 2rem;
+	text-align:center;
+	box-shadow: #254D4C 0px 2px 8px;
+  } 
+
+  .submit-btn {
+	border-radius: 10px;
+	border-color: #254D4C;
+	background-color: #EDE3E8;
+	padding: .3rem 1rem;
+  }
+
+ 

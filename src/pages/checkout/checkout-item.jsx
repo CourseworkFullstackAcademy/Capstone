@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { ShopContext } from "../../context/shop-context";
 import PropTypes from "prop-types";
 
@@ -6,7 +7,6 @@ function CheckoutItem({ itemId, quantity, products }) {
   // eslint-disable-next-line no-unused-vars
   const { cartItems, removeFromCart, updateCartItemCount, addToCart } =
     useContext(ShopContext);
-	//is product defined correctly? the console says product.image is undefined
   const product = products.find((p) => p.id === parseInt(itemId));
 
 //chekcing status of product
@@ -20,22 +20,22 @@ if (!product) {
 
   return (
     <div className="mb-4">
-      <div className="d-flex">
+      <Link to={`/product/${itemId}`} className="text-decoration-none"><div className="d-flex">
         <img
           src={product.image}
           alt={product.title}
           className="rounded-3"
           style={{ width: "100px" }}
         />
-        <div className="ms-3">
+        <div className="checkout-description ms-3">
           <span className="mb-0 text-price">${product.price.toFixed(2)}</span>
           <p className="mb-0 text-descriptions">{product.title}</p>
           <p className="text-descriptions mt-0">
             Qty:
-            <span className="text-descriptions fw-bold">{quantity}</span>
+            <span className="text-descriptions fw-bold"> {quantity}</span>
           </p>
         </div>
-      </div>
+      </div></Link>
       <div className="mt-3">
         <button
           onClick={() => removeFromCart(itemId)}
